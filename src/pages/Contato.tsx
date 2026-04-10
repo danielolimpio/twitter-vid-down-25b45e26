@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Mail, MessageSquare, Send, Clock, CheckCircle2 } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const Contato = () => {
   const [sent, setSent] = useState(false);
@@ -10,12 +11,17 @@ const Contato = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate send
     setSent(true);
   };
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Contato - Fale Conosco | TwitterDown"
+        description="Entre em contato com o TwitterDown. Tire dúvidas, envie sugestões ou reporte problemas sobre o download de vídeos do Twitter."
+        path="/contato"
+        breadcrumbs={[{ name: "Início", path: "/" }, { name: "Contato", path: "/contato" }]}
+      />
       <Sidebar activeSection="contato" />
       <header className="lg:hidden sticky top-0 bg-background/80 backdrop-blur-lg border-b border-border z-40 px-4 py-3 flex items-center gap-3">
         <Link to="/" className="text-muted-foreground hover:text-foreground"><ArrowLeft className="w-5 h-5" /></Link>
@@ -23,7 +29,7 @@ const Contato = () => {
       </header>
 
       <main className="lg:ml-[240px] pb-20 lg:pb-0">
-        <section className="py-12 px-4">
+        <article className="py-12 px-4">
           <div className="max-w-2xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-extrabold mb-4">Fale Conosco</h1>
             <p className="text-muted-foreground text-lg mb-10">
@@ -60,48 +66,20 @@ const Contato = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-sm font-medium text-foreground mb-1.5 block">Nome</label>
-                    <input
-                      type="text"
-                      required
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-ring"
-                      placeholder="Seu nome"
-                    />
+                    <input type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-ring" placeholder="Seu nome" />
                   </div>
                   <div>
                     <label className="text-sm font-medium text-foreground mb-1.5 block">E-mail</label>
-                    <input
-                      type="email"
-                      required
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-ring"
-                      placeholder="seu@email.com"
-                    />
+                    <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-ring" placeholder="seu@email.com" />
                   </div>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-foreground mb-1.5 block">Assunto</label>
-                  <input
-                    type="text"
-                    required
-                    value={form.subject}
-                    onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                    className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-ring"
-                    placeholder="Assunto da mensagem"
-                  />
+                  <input type="text" required value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-ring" placeholder="Assunto da mensagem" />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-foreground mb-1.5 block">Mensagem</label>
-                  <textarea
-                    required
-                    rows={5}
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-ring resize-none"
-                    placeholder="Escreva sua mensagem..."
-                  />
+                  <textarea required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-ring resize-none" placeholder="Escreva sua mensagem..." />
                 </div>
                 <button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 px-6 rounded-xl text-sm flex items-center justify-center gap-2 transition-colors">
                   <Send className="w-4 h-4" /> Enviar Mensagem
@@ -109,7 +87,7 @@ const Contato = () => {
               </form>
             )}
           </div>
-        </section>
+        </article>
         <Footer />
       </main>
     </div>

@@ -2,9 +2,16 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, ShieldCheck, Zap, Globe, Heart, Users, Award } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const Sobre = () => (
   <div className="min-h-screen bg-background">
+    <SEOHead
+      title="Sobre o TwitterDown - Baixar Vídeos do Twitter Grátis"
+      description="Conheça o TwitterDown, a ferramenta mais completa para baixar vídeos do Twitter (X) em HD, Full HD e 4K. Gratuito, seguro e sem marca d'água."
+      path="/sobre"
+      breadcrumbs={[{ name: "Início", path: "/" }, { name: "Sobre", path: "/sobre" }]}
+    />
     <Sidebar activeSection="sobre" />
     <header className="lg:hidden sticky top-0 bg-background/80 backdrop-blur-lg border-b border-border z-40 px-4 py-3 flex items-center gap-3">
       <Link to="/" className="text-muted-foreground hover:text-foreground"><ArrowLeft className="w-5 h-5" /></Link>
@@ -12,7 +19,7 @@ const Sobre = () => (
     </header>
 
     <main className="lg:ml-[240px] pb-20 lg:pb-0">
-      <section className="py-12 px-4">
+      <article className="py-12 px-4">
         <div className="max-w-2xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-extrabold mb-4">Sobre o TwitterDown</h1>
           <p className="text-muted-foreground text-lg mb-8">
@@ -80,7 +87,7 @@ const Sobre = () => (
             </div>
           </div>
         </div>
-      </section>
+      </article>
       <Footer />
     </main>
   </div>
