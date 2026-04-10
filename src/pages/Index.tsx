@@ -1,16 +1,47 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useCallback } from "react";
+import Sidebar from "@/components/Sidebar";
+import HeroSection from "@/components/HeroSection";
+import FeaturesSection from "@/components/FeaturesSection";
+import HowToSection from "@/components/HowToSection";
+import SEOContent from "@/components/SEOContent";
+import FAQSection from "@/components/FAQSection";
+import Footer from "@/components/Footer";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const [activeSection, setActiveSection] = useState("home");
+
+  const handleNavigate = useCallback((section: string) => {
+    setActiveSection(section);
+    const el = document.getElementById(section);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else if (section === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen bg-background">
+      <Sidebar activeSection={activeSection} onNavigate={handleNavigate} />
+      
+      {/* Mobile header */}
+      <header className="lg:hidden sticky top-0 bg-background/80 backdrop-blur-lg border-b border-border z-40 px-4 py-3 flex items-center gap-3">
+        <svg viewBox="0 0 24 24" className="w-6 h-6 fill-foreground" aria-hidden="true">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+        <span className="font-bold text-foreground">TwitterDown</span>
+      </header>
+
+      <main className="lg:ml-[240px] pb-20 lg:pb-0">
+        <HeroSection />
+        <FeaturesSection />
+        <HowToSection />
+        <SEOContent />
+        <FAQSection />
+        <Footer />
+      </main>
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
