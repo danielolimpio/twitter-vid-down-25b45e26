@@ -1,3 +1,4 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import { Download, Home, HelpCircle, Info, FileText, Mail } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
@@ -7,40 +8,48 @@ const XLogo = () => (
   </svg>
 );
 
-interface SidebarProps {
-  activeSection: string;
-  onNavigate: (section: string) => void;
-}
-
 const navItems = [
-  { id: "home", label: "Início", icon: Home },
-  { id: "downloads", label: "Downloads", icon: Download },
-  { id: "sobre", label: "Sobre", icon: Info },
-  { id: "como-usar", label: "Como Usar", icon: FileText },
-  { id: "faq", label: "FAQ", icon: HelpCircle },
-  { id: "contato", label: "Contato", icon: Mail },
+  { id: "/", label: "Início", icon: Home },
+  { id: "/downloads", label: "Downloads", icon: Download },
+  { id: "/sobre", label: "Sobre", icon: Info },
+  { id: "/como-usar", label: "Como Usar", icon: FileText },
+  { id: "/faq", label: "FAQ", icon: HelpCircle },
+  { id: "/contato", label: "Contato", icon: Mail },
 ];
 
-const Sidebar = ({ activeSection, onNavigate }: SidebarProps) => {
+interface SidebarProps {
+  activeSection?: string;
+}
+
+const Sidebar = ({ activeSection }: SidebarProps) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const currentPath = activeSection || location.pathname;
+  const isActive = (id: string) => {
+    if (id === "/") return currentPath === "/" || currentPath === "home";
+    return currentPath === id || currentPath === id.slice(1);
+  };
+
   return (
     <>
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex flex-col fixed left-0 top-0 h-full w-[240px] border-r border-border bg-sidebar p-4 z-50">
-        <div className="flex items-center gap-3 px-3 py-2 mb-2">
+        <button onClick={() => navigate("/")} className="flex items-center gap-3 px-3 py-2 mb-2 text-left">
           <XLogo />
           <div>
             <h1 className="font-bold text-foreground text-lg leading-tight">TwitterDown</h1>
             <p className="text-xs text-muted-foreground">Baixar Vídeos</p>
           </div>
-        </div>
+        </button>
 
         <nav className="flex-1 mt-2 space-y-1">
           {navItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => onNavigate(item.id)}
+              onClick={() => navigate(item.id)}
               className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-full text-[15px] font-medium transition-colors ${
-                activeSection === item.id
+                isActive(item.id)
                   ? "bg-sidebar-accent text-sidebar-accent-foreground"
                   : "text-sidebar-foreground hover:bg-accent"
               }`}
@@ -64,9 +73,9 @@ const Sidebar = ({ activeSection, onNavigate }: SidebarProps) => {
         {navItems.slice(0, 5).map((item) => (
           <button
             key={item.id}
-            onClick={() => onNavigate(item.id)}
+            onClick={() => navigate(item.id)}
             className={`flex flex-col items-center gap-0.5 p-1.5 rounded-lg text-[10px] transition-colors ${
-              activeSection === item.id ? "text-primary" : "text-muted-foreground"
+              isActive(item.id) ? "text-primary" : "text-muted-foreground"
             }`}
           >
             <item.icon className="w-5 h-5" />

@@ -1,6 +1,7 @@
 import { Download, Link, ClipboardPaste, Play, Clock, User } from "lucide-react";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { addToHistory } from "@/lib/downloadHistory";
 
 interface VideoVariant {
   url: string;
@@ -72,6 +73,18 @@ const HeroSection = () => {
   };
 
   const downloadVideo = (videoUrl: string, quality: string) => {
+    // Save to history
+    if (result?.tweet && result.videos?.[0]) {
+      addToHistory({
+        url: videoUrl,
+        thumbnail: result.videos[0].thumbnail || "",
+        author: result.tweet.author,
+        authorHandle: result.tweet.authorHandle,
+        text: result.tweet.text || "",
+        quality,
+        type: result.videos[0].type || "video",
+      });
+    }
     const a = document.createElement("a");
     a.href = videoUrl;
     a.target = "_blank";

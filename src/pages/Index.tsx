@@ -1,4 +1,3 @@
-import { useState, useCallback } from "react";
 import Sidebar from "@/components/Sidebar";
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
@@ -8,22 +7,10 @@ import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState("home");
-
-  const handleNavigate = useCallback((section: string) => {
-    setActiveSection(section);
-    const el = document.getElementById(section);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    } else if (section === "home") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }, []);
-
   return (
     <div className="min-h-screen bg-background">
-      <Sidebar activeSection={activeSection} onNavigate={handleNavigate} />
-      
+      <Sidebar />
+
       {/* Mobile header */}
       <header className="lg:hidden sticky top-0 bg-background/80 backdrop-blur-lg border-b border-border z-40 px-4 py-3 flex items-center gap-3">
         <svg viewBox="0 0 24 24" className="w-6 h-6 fill-foreground" aria-hidden="true">
