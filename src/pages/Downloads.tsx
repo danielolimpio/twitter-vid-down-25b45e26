@@ -4,6 +4,7 @@ import { Download, Trash2, ArrowLeft, Clock, User, ExternalLink } from "lucide-r
 import { getHistory, clearHistory, removeFromHistory, DownloadHistoryItem } from "@/lib/downloadHistory";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const Downloads = () => {
   const [history, setHistory] = useState<DownloadHistoryItem[]>([]);
@@ -29,6 +30,13 @@ const Downloads = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Histórico de Downloads - TwitterDown"
+        description="Veja seus downloads recentes de vídeos do Twitter. Histórico salvo localmente no seu navegador."
+        path="/downloads"
+        breadcrumbs={[{ name: "Início", path: "/" }, { name: "Downloads", path: "/downloads" }]}
+        noindex
+      />
       <Sidebar activeSection="downloads" />
 
       <header className="lg:hidden sticky top-0 bg-background/80 backdrop-blur-lg border-b border-border z-40 px-4 py-3 flex items-center gap-3">
@@ -65,7 +73,7 @@ const Downloads = () => {
                 {history.map((item) => (
                   <div key={item.id} className="bg-card border border-border rounded-xl p-4 flex gap-4">
                     {item.thumbnail && (
-                      <img src={item.thumbnail} alt="" className="w-24 h-16 object-cover rounded-lg flex-shrink-0" />
+                      <img src={item.thumbnail} alt="Thumbnail do vídeo baixado" loading="lazy" className="w-24 h-16 object-cover rounded-lg flex-shrink-0" />
                     )}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
@@ -81,10 +89,10 @@ const Downloads = () => {
                       </div>
                     </div>
                     <div className="flex flex-col gap-2 flex-shrink-0">
-                      <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 transition-colors">
+                      <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 transition-colors" aria-label="Abrir vídeo">
                         <ExternalLink className="w-4 h-4" />
                       </a>
-                      <button onClick={() => handleRemove(item.id)} className="text-muted-foreground hover:text-destructive transition-colors">
+                      <button onClick={() => handleRemove(item.id)} className="text-muted-foreground hover:text-destructive transition-colors" aria-label="Remover do histórico">
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>

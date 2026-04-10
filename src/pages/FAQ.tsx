@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, ChevronDown, HelpCircle, MessageCircle } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const categories = [
   {
@@ -44,6 +45,11 @@ const categories = [
   },
 ];
 
+// Flatten all FAQs for structured data
+const allFaqItems = categories.flatMap(cat =>
+  cat.faqs.map(f => ({ question: f.q, answer: f.a }))
+);
+
 const FAQ = () => {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({ "0-0": true });
 
@@ -53,6 +59,13 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Perguntas Frequentes - Baixar Vídeos Twitter | TwitterDown"
+        description="Tire suas dúvidas sobre como baixar vídeos do Twitter grátis. FAQ completo sobre qualidade, compatibilidade, segurança e funcionamento do TwitterDown."
+        path="/faq"
+        breadcrumbs={[{ name: "Início", path: "/" }, { name: "FAQ", path: "/faq" }]}
+        faqItems={allFaqItems}
+      />
       <Sidebar activeSection="faq" />
       <header className="lg:hidden sticky top-0 bg-background/80 backdrop-blur-lg border-b border-border z-40 px-4 py-3 flex items-center gap-3">
         <Link to="/" className="text-muted-foreground hover:text-foreground"><ArrowLeft className="w-5 h-5" /></Link>
@@ -60,7 +73,7 @@ const FAQ = () => {
       </header>
 
       <main className="lg:ml-[240px] pb-20 lg:pb-0">
-        <section className="py-12 px-4">
+        <article className="py-12 px-4">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-10">
               <h1 className="text-3xl md:text-4xl font-extrabold mb-4">Perguntas Frequentes</h1>
@@ -103,7 +116,7 @@ const FAQ = () => {
               </Link>
             </div>
           </div>
-        </section>
+        </article>
         <Footer />
       </main>
     </div>
