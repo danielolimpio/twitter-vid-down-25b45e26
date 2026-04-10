@@ -1,4 +1,4 @@
-import { Download, Link, ClipboardPaste, Play, Clock, User } from "lucide-react";
+import { Download, Link, ClipboardPaste, Play, Clock, User, X } from "lucide-react";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { addToHistory } from "@/lib/downloadHistory";
@@ -120,6 +120,15 @@ const HeroSection = () => {
               className="flex-1 bg-transparent outline-none text-foreground placeholder:text-muted-foreground text-sm md:text-base"
               onKeyDown={(e) => e.key === "Enter" && handleDownload()}
             />
+            {url && (
+              <button
+                onClick={() => { setUrl(""); setResult(null); }}
+                className="text-muted-foreground hover:text-foreground transition-colors flex-shrink-0"
+                aria-label="Limpar"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
             <button
               onClick={handlePaste}
               className="flex items-center gap-1.5 text-primary hover:text-twitter-blue-hover text-sm font-medium transition-colors flex-shrink-0"
