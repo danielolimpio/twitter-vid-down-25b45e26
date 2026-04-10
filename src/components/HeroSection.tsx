@@ -1,6 +1,7 @@
 import { Download, Link, ClipboardPaste, Play, Clock, User } from "lucide-react";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { addToHistory } from "@/lib/downloadHistory";
 
 interface VideoVariant {
   url: string;
