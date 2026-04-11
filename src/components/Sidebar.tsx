@@ -36,7 +36,7 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex flex-col fixed left-0 top-0 h-full w-[240px] border-r border-border bg-sidebar p-4 z-50">
         <button onClick={() => navigate("/")} className="flex items-center gap-3 px-3 py-2 mb-2 text-left">
-          <XLogo />
+          <SiteLogo />
           <div>
             <h1 className="font-bold text-foreground text-lg leading-tight">TwitterDown</h1>
             <p className="text-xs text-muted-foreground">Baixar Vídeos</p>
