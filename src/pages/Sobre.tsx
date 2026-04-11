@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, ShieldCheck, Zap, Globe, Heart, Users, Award } from "lucide-react";
+import sobreBanner from "@/assets/sobre-banner.jpg";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
@@ -25,6 +26,13 @@ const Sobre = () => (
           <p className="text-muted-foreground text-lg mb-8">
             A ferramenta mais completa e confiável para baixar vídeos do Twitter (X) em alta qualidade, sem marca d'água e 100% grátis.
           </p>
+
+          <img
+            src={sobreBanner}
+            alt="TwitterDown - Baixar vídeos do Twitter em HD gratuitamente"
+            className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mb-8"
+            loading="eager"
+          />
 
           <div className="prose prose-sm max-w-none space-y-6">
             <div className="bg-card border border-border rounded-2xl p-6">
