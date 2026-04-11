@@ -106,9 +106,16 @@ const HeroSection = () => {
           Baixar Vídeos do Twitter{" "}
           <span className="text-gradient-twitter">Grátis e Rápido</span>
         </h1>
-        <p className="text-muted-foreground text-base md:text-lg mb-8 max-w-xl mx-auto">
+        <p className="text-muted-foreground text-base md:text-lg mb-6 max-w-xl mx-auto">
           A melhor ferramenta para baixar vídeos do Twitter (X) em alta qualidade. MP4, Full HD, sem marca d'água. 100% grátis!
         </p>
+
+        <img
+          src={heroBanner}
+          alt="Baixar vídeos do Twitter - Download rápido e gratuito"
+          className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mb-8"
+          loading="eager"
+        />
 
         <div className="bg-card border border-border rounded-2xl p-1.5 mb-4">
           <div className="flex items-center gap-2 bg-background rounded-xl px-4 py-3">
@@ -153,12 +160,6 @@ const HeroSection = () => {
           {loading ? "Processando..." : "Baixar Agora"}
         </button>
 
-        <img
-          src={heroBanner}
-          alt="Baixar vídeos do Twitter - Download rápido e gratuito"
-          className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mt-8"
-          loading="eager"
-        />
 
         {result && !result.success && result.error && (
           <p className="text-destructive text-sm mt-3">{result.error}</p>
