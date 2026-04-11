@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import comoUsarBanner from "@/assets/como-usar-banner.jpg";
 import { ArrowLeft, Copy, Link as LinkIcon, Download, Smartphone, Monitor, HelpCircle, CheckCircle2 } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
@@ -86,6 +87,13 @@ const ComoUsar = () => (
           <p className="text-muted-foreground text-lg mb-10">
             Guia completo passo a passo para baixar vídeos do Twitter (X) em qualquer dispositivo.
           </p>
+
+          <img
+            src={comoUsarBanner}
+            alt="Como baixar vídeos do Twitter - Guia passo a passo"
+            className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mb-10"
+            loading="eager"
+          />
 
           <div className="space-y-6 mb-12">
             {steps.map((s) => (
