@@ -27,6 +27,13 @@ const Sobre = () => (
             A ferramenta mais completa e confiável para baixar vídeos do Twitter (X) em alta qualidade, sem marca d'água e 100% grátis.
           </p>
 
+          <img
+            src={sobreBanner}
+            alt="TwitterDown - Baixar vídeos do Twitter em HD gratuitamente"
+            className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mb-8"
+            loading="eager"
+          />
+
           <div className="prose prose-sm max-w-none space-y-6">
             <div className="bg-card border border-border rounded-2xl p-6">
               <h2 className="text-xl font-bold text-foreground mb-3">Nossa Missão</h2>
