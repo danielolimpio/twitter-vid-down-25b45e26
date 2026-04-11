@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, ShieldCheck, Zap, Globe, Heart, Users, Award } from "lucide-react";
+import sobreBanner from "@/assets/sobre-banner.jpg";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
