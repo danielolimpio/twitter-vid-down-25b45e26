@@ -88,6 +88,13 @@ const ComoUsar = () => (
             Guia completo passo a passo para baixar vídeos do Twitter (X) em qualquer dispositivo.
           </p>
 
+          <img
+            src={comoUsarBanner}
+            alt="Como baixar vídeos do Twitter - Guia passo a passo"
+            className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mb-10"
+            loading="eager"
+          />
+
           <div className="space-y-6 mb-12">
             {steps.map((s) => (
               <div key={s.num} className="bg-card border border-border rounded-2xl p-6">
