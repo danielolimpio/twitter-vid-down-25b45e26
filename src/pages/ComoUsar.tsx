@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import comoUsarBanner from "@/assets/como-usar-banner.jpg";
 import { ArrowLeft, Copy, Link as LinkIcon, Download, Smartphone, Monitor, HelpCircle, CheckCircle2 } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
