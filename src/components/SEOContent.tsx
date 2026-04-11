@@ -1,7 +1,15 @@
+import seoBanner from "@/assets/seo-banner.png";
+
 const SEOContent = () => (
   <section id="sobre" className="py-12 px-4">
     <div className="max-w-2xl mx-auto">
-      <h2 className="text-2xl md:text-3xl font-bold mb-4">A Melhor Ferramenta Para Baixar Vídeos do Twitter</h2>
+      <h2 className="text-2xl md:text-3xl font-bold mb-6">A Melhor Ferramenta Para Baixar Vídeos do Twitter</h2>
+      <img
+        src={seoBanner}
+        alt="Download de vídeos do Twitter - Ferramenta rápida e gratuita"
+        className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mb-8"
+        loading="lazy"
+      />
       <div className="prose prose-sm text-muted-foreground space-y-4">
         <p>
           O <strong className="text-foreground">TwitterDown</strong> é a ferramenta mais completa e confiável para baixar vídeos do Twitter (X) sem marca d'água. Com milhões de downloads realizados, nossa plataforma oferece uma experiência rápida, segura e totalmente gratuita para salvar seus conteúdos favoritos do Twitter.
