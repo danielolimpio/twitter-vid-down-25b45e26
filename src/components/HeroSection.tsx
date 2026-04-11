@@ -1,5 +1,5 @@
 import { Download, Link, ClipboardPaste, Play, Clock, User, X } from "lucide-react";
-import heroBanner from "@/assets/hero-banner.png";
+import heroBanner from "@/assets/hero-banner.webp";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { addToHistory } from "@/lib/downloadHistory";
