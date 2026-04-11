@@ -1,4 +1,5 @@
 import { Download, Link, ClipboardPaste, Play, Clock, User, X } from "lucide-react";
+import heroBanner from "@/assets/hero-banner.png";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { addToHistory } from "@/lib/downloadHistory";
@@ -108,6 +109,12 @@ const HeroSection = () => {
         <p className="text-muted-foreground text-base md:text-lg mb-8 max-w-xl mx-auto">
           A melhor ferramenta para baixar vídeos do Twitter (X) em alta qualidade. MP4, Full HD, sem marca d'água. 100% grátis!
         </p>
+        <img
+          src={heroBanner}
+          alt="Baixar vídeos do Twitter - Download rápido e gratuito"
+          className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mb-8"
+          loading="eager"
+        />
 
         <div className="bg-card border border-border rounded-2xl p-1.5 mb-4">
           <div className="flex items-center gap-2 bg-background rounded-xl px-4 py-3">
