@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Download, Home, HelpCircle, Info, FileText, Mail } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
-import logoImg from "@/assets/logo.png";
+import logoImg from "@/assets/logo.webp";
 
 const SiteLogo = () => (
   <img src={logoImg} alt="TwitterDown" className="w-7 h-7 rounded" />

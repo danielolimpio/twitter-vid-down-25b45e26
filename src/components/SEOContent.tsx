@@ -1,4 +1,4 @@
-import seoBanner from "@/assets/seo-banner.png";
+import seoBanner from "@/assets/seo-banner.webp";
 
 const SEOContent = () => (
   <section id="sobre" className="py-12 px-4">
