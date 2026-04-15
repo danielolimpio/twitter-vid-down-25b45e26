@@ -9,6 +9,7 @@ const Footer = () => (
         <Link to="/privacidade" className="text-muted-foreground hover:text-foreground transition-colors">Política de Privacidade</Link>
         <Link to="/termos" className="text-muted-foreground hover:text-foreground transition-colors">Termos de Uso</Link>
         <Link to="/dmca" className="text-muted-foreground hover:text-foreground transition-colors">DMCA</Link>
+        <Link to="/uso-responsavel" className="text-muted-foreground hover:text-foreground transition-colors">Uso Responsável</Link>
       </div>
       <p className="text-xs text-muted-foreground text-center mb-2">
         TwitterDown não é afiliado ao Twitter/X. Todos os direitos sobre os vídeos pertencem aos seus respectivos criadores.

@@ -13,6 +13,7 @@ import Contato from "./pages/Contato.tsx";
 import Privacidade from "./pages/Privacidade.tsx";
 import Termos from "./pages/Termos.tsx";
 import DMCA from "./pages/DMCA.tsx";
+import UsoResponsavel from "./pages/UsoResponsavel.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/privacidade" element={<Privacidade />} />
           <Route path="/termos" element={<Termos />} />
           <Route path="/dmca" element={<DMCA />} />
+          <Route path="/uso-responsavel" element={<UsoResponsavel />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
