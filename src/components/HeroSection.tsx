@@ -1,4 +1,5 @@
-import { Download, Link, ClipboardPaste, Play, Clock, User, X } from "lucide-react";
+import { Download, Link as LinkIcon, ClipboardPaste, Play, Clock, User, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroBanner from "@/assets/hero-banner.webp";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
