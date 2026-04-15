@@ -153,13 +153,6 @@ const HeroSection = () => {
           {loading ? "Processando..." : "Baixar Agora"}
         </button>
 
-        <img
-          src={heroBanner}
-          alt="Baixar vídeos do Twitter - Download rápido e gratuito"
-          className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mt-8"
-          loading="eager"
-        />
-
         {result && !result.success && result.error && (
           <p className="text-destructive text-sm mt-3">{result.error}</p>
         )}
@@ -245,6 +238,13 @@ const HeroSection = () => {
             ))}
           </div>
         )}
+
+        <img
+          src={heroBanner}
+          alt="Baixar vídeos do Twitter - Download rápido e gratuito"
+          className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mt-8"
+          loading="eager"
+        />
 
         <p className="text-xs text-muted-foreground mt-4">
           Certifique-se de não violar os direitos de terceiros com os vídeos que baixar do Twitter.
