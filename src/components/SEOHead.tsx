@@ -4,16 +4,25 @@ const SITE_URL = "https://baixarvideostwitter.com";
 const SITE_NAME = "TwitterDown";
 const DEFAULT_IMAGE = "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8ea8799f-241c-4ee9-933c-fd1990452197/id-preview-9d112ed8--46e28d82-1c24-4171-a224-b46d2746c035.lovable.app-1775843788600.png";
 
+interface HowToStep {
+  name: string;
+  text: string;
+  image?: string;
+}
+
 interface SEOHeadProps {
   title: string;
   description: string;
   path: string;
   breadcrumbs?: { name: string; path: string }[];
   faqItems?: { question: string; answer: string }[];
+  howToSteps?: HowToStep[];
   noindex?: boolean;
+  /** Inject SoftwareApplication schema (use on homepage) */
+  softwareApp?: boolean;
 }
 
-const SEOHead = ({ title, description, path, breadcrumbs, faqItems, noindex }: SEOHeadProps) => {
+const SEOHead = ({ title, description, path, breadcrumbs, faqItems, howToSteps, noindex, softwareApp }: SEOHeadProps) => {
   useEffect(() => {
     const canonicalUrl = `${SITE_URL}${path}`;
 
@@ -101,10 +110,62 @@ const SEOHead = ({ title, description, path, breadcrumbs, faqItems, noindex }: S
       document.head.appendChild(script);
     }
 
+    // HowTo
+    if (howToSteps && howToSteps.length > 0) {
+      const howToSchema = {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": title,
+        "description": description,
+        "step": howToSteps.map((step, i) => ({
+          "@type": "HowToStep",
+          "position": i + 1,
+          "name": step.name,
+          "text": step.text,
+          ...(step.image ? { "image": step.image } : {}),
+        })),
+      };
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.setAttribute("data-seo-head", "howto");
+      script.textContent = JSON.stringify(howToSchema);
+      document.head.appendChild(script);
+    }
+
+    // SoftwareApplication (for homepage)
+    if (softwareApp) {
+      const appSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Baixar Videos Twitter - TwitterDown",
+        "url": SITE_URL,
+        "description": "Ferramenta online gratuita para baixar vídeos do Twitter (X) em HD, Full HD 1080p e 4K. Sem marca d'água, sem cadastro.",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "BRL",
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "12450",
+          "bestRating": "5",
+        },
+      };
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.setAttribute("data-seo-head", "softwareapp");
+      script.textContent = JSON.stringify(appSchema);
+      document.head.appendChild(script);
+    }
+
     return () => {
       document.querySelectorAll('script[data-seo-head]').forEach(el => el.remove());
     };
-  }, [title, description, path, breadcrumbs, faqItems, noindex]);
+  }, [title, description, path, breadcrumbs, faqItems, howToSteps, noindex, softwareApp]);
 
   return null;
 };

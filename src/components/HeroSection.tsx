@@ -249,7 +249,9 @@ const HeroSection = () => {
           src={heroBanner}
           alt="Baixar vídeos do Twitter - Download rápido e gratuito"
           className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mt-8"
-          loading="eager"
+          width={672}
+          height={378}
+          loading="lazy"
         />
       </div>
     </section>
