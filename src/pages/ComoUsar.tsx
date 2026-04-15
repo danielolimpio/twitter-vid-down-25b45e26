@@ -65,6 +65,12 @@ const comoUsarFaqs = [
   { question: "Funciona com links do X.com?", answer: "Sim! O TwitterDown suporta tanto links de twitter.com quanto de x.com." },
 ];
 
+const howToSteps = [
+  { name: "Copie o link do tweet", text: "Abra o Twitter (X), encontre o tweet com o vídeo, toque nos três pontos e selecione 'Copiar link do tweet'." },
+  { name: "Cole o link no TwitterDown", text: "Acesse baixarvideostwitter.com e cole o link copiado no campo de download." },
+  { name: "Escolha a qualidade e baixe", text: "Clique em 'Baixar Agora', escolha a qualidade desejada (480p, 720p, 1080p ou 4K) e o download começará automaticamente." },
+];
+
 const ComoUsar = () => (
   <div className="min-h-screen bg-background">
     <SEOHead
@@ -73,6 +79,7 @@ const ComoUsar = () => (
       path="/como-usar"
       breadcrumbs={[{ name: "Início", path: "/" }, { name: "Como Usar", path: "/como-usar" }]}
       faqItems={comoUsarFaqs}
+      howToSteps={howToSteps}
     />
     <Sidebar activeSection="como-usar" />
     <header className="lg:hidden sticky top-0 bg-background/80 backdrop-blur-lg border-b border-border z-40 px-4 py-3 flex items-center gap-3">

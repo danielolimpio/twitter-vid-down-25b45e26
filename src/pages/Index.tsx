@@ -27,6 +27,7 @@ const Index = () => {
         path="/"
         breadcrumbs={[{ name: "Início", path: "/" }]}
         faqItems={homeFaqs}
+        softwareApp
       />
       <Sidebar />
 
