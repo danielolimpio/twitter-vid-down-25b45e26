@@ -134,6 +134,42 @@ Deno.serve(async (req) => {
         );
       }
 
+      // Syndication returned OK but no video data — try vxtwitter as fallback
+      console.log('Syndication had no video data, trying vxtwitter fallback for tweet:', tweetId);
+      const altUrl2 = `https://api.vxtwitter.com/Twitter/status/${tweetId}`;
+      const altResponse2 = await fetch(altUrl2, {
+        headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
+      });
+
+      if (altResponse2.ok) {
+        const altData2 = await altResponse2.json();
+        if (altData2.media_extended && altData2.media_extended.length > 0) {
+          const videos2 = altData2.media_extended
+            .filter((m: any) => m.type === 'video' || m.type === 'gif')
+            .map((m: any) => ({
+              url: m.url,
+              thumbnail: m.thumbnail_url,
+              type: m.type,
+              duration: m.duration_millis ? Math.round(m.duration_millis / 1000) : null,
+            }));
+
+          if (videos2.length > 0) {
+            return new Response(
+              JSON.stringify({
+                success: true,
+                tweet: {
+                  text: altData2.text || '',
+                  author: altData2.user_name || '',
+                  authorHandle: altData2.user_screen_name || '',
+                },
+                videos: videos2,
+              }),
+              { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+            );
+          }
+        }
+      }
+
       return new Response(
         JSON.stringify({ success: false, error: 'Este tweet não contém vídeos.' }),
         { status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
