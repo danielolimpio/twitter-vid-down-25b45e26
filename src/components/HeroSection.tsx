@@ -154,6 +154,11 @@ const HeroSection = () => {
           {loading ? "Processando..." : "Baixar Agora"}
         </button>
 
+        <p className="text-xs text-muted-foreground mt-4">
+          Certifique-se de não violar os direitos de terceiros com os vídeos que baixar do Twitter (X). Conteúdos protegidos por direitos autorais não podem ser baixados com esta ferramenta.{" "}
+          <Link to="/uso-responsavel" className="text-primary hover:underline font-medium">Saiba mais</Link>
+        </p>
+
         {result && !result.success && result.error && (
           <p className="text-destructive text-sm mt-3">{result.error}</p>
         )}
@@ -246,11 +251,6 @@ const HeroSection = () => {
           className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mt-8"
           loading="eager"
         />
-
-        <p className="text-xs text-muted-foreground mt-4">
-          Certifique-se de não violar os direitos de terceiros com os vídeos que baixar do Twitter (X). Conteúdos protegidos por direitos autorais não podem ser baixados com esta ferramenta.{" "}
-          <Link to="/uso-responsavel" className="text-primary hover:underline font-medium">Saiba mais</Link>
-        </p>
       </div>
     </section>
   );
