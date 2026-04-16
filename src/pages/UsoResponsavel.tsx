@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { AlertTriangle, Shield, BookOpen, Users, Heart, Globe, Lock, Ban, Scale, FileText, CheckCircle, XCircle, HelpCircle, Mail, Gavel, ClipboardCheck, Eye, Info } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
