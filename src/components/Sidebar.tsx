@@ -3,6 +3,11 @@ import { Download, Home, HelpCircle, Info, FileText, Mail } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 import logoImg from "@/assets/logo.webp";
+import instagramImg from "@/assets/baixar-instagram.png";
+import facebookImg from "@/assets/baixar-facebook.png";
+import youtubeImg from "@/assets/baixar-youtube.png";
+import tiktokImg from "@/assets/baixar-tiktok.png";
+import kwaiImg from "@/assets/baixar-kwai.png";
 
 const SiteLogo = () => (
   <img src={logoImg} alt="TwitterDown" className="w-7 h-7 rounded" />
@@ -15,6 +20,14 @@ const navItems = [
   { id: "/como-usar", label: "Como Usar", icon: FileText },
   { id: "/faq", label: "FAQ", icon: HelpCircle },
   { id: "/contato", label: "Contato", icon: Mail },
+];
+
+const externalLinks = [
+  { label: "Baixar Instagram", url: "https://baixarvideosinstagram.com", img: instagramImg },
+  { label: "Baixar Facebook", url: "https://baixarvideosfacebook.com", img: facebookImg },
+  { label: "Baixar Youtube", url: "https://baixarvideoyoutube.com", img: youtubeImg },
+  { label: "Baixar TikTok", url: "https://baixarvideostiktok.com", img: tiktokImg },
+  { label: "Baixar Kwai", url: "https://baixarvideoskwai.com", img: kwaiImg },
 ];
 
 interface SidebarProps {
@@ -43,7 +56,7 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
           </div>
         </button>
 
-        <nav className="flex-1 mt-2 space-y-1">
+        <nav className="flex-1 mt-2 space-y-1 overflow-y-auto">
           {navItems.map((item) => (
             <button
               key={item.id}
@@ -58,6 +71,23 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
               {item.label}
             </button>
           ))}
+
+          {/* External download links */}
+          <div className="pt-4 mt-4 border-t border-border">
+            <p className="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Outros Baixadores</p>
+            {externalLinks.map((link) => (
+              <a
+                key={link.url}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 w-full px-3 py-2 rounded-full text-[14px] font-medium text-sidebar-foreground hover:bg-accent transition-colors"
+              >
+                <img src={link.img} alt={link.label} className="w-5 h-5 rounded" />
+                {link.label}
+              </a>
+            ))}
+          </div>
         </nav>
 
         <div className="mt-auto pt-4 border-t border-border">
