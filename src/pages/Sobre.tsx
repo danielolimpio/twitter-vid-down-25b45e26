@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ShieldCheck, Zap, Globe, Heart, Users, Award } from "lucide-react";
 import sobreBanner from "@/assets/sobre-banner.webp";
 import Sidebar from "@/components/Sidebar";
