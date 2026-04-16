@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Download, Trash2, ArrowLeft, Clock, User, ExternalLink } from "lucide-react";
+import { Download, Trash2, Clock, User, ExternalLink } from "lucide-react";
 import { getHistory, clearHistory, removeFromHistory, DownloadHistoryItem } from "@/lib/downloadHistory";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
