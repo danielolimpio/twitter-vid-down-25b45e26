@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import comoUsarBanner from "@/assets/como-usar-banner.webp";
-import { ArrowLeft, Copy, Link as LinkIcon, Download, Smartphone, Monitor, HelpCircle, CheckCircle2 } from "lucide-react";
+import { Copy, Link as LinkIcon, Download, Smartphone, Monitor, HelpCircle, CheckCircle2 } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Download, Trash2, ArrowLeft, Clock, User, ExternalLink } from "lucide-react";
 import { getHistory, clearHistory, removeFromHistory, DownloadHistoryItem } from "@/lib/downloadHistory";
 import Sidebar from "@/components/Sidebar";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 
@@ -39,10 +40,7 @@ const Downloads = () => {
       />
       <Sidebar activeSection="downloads" />
 
-      <header className="lg:hidden sticky top-0 bg-background/80 backdrop-blur-lg border-b border-border z-40 px-4 py-3 flex items-center gap-3">
-        <Link to="/" className="text-muted-foreground hover:text-foreground"><ArrowLeft className="w-5 h-5" /></Link>
-        <span className="font-bold text-foreground">Downloads</span>
-      </header>
+      <Header title="Downloads" showBack />
 
       <main className="lg:ml-[240px] pb-20 lg:pb-0">
         <section className="py-12 px-4">
