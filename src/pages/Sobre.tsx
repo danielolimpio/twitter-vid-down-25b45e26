@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, ShieldCheck, Zap, Globe, Heart, Users, Award } from "lucide-react";
+import { ShieldCheck, Zap, Globe, Heart, Users, Award } from "lucide-react";
 import sobreBanner from "@/assets/sobre-banner.webp";
 import Sidebar from "@/components/Sidebar";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 
@@ -14,10 +15,7 @@ const Sobre = () => (
       breadcrumbs={[{ name: "Início", path: "/" }, { name: "Sobre", path: "/sobre" }]}
     />
     <Sidebar activeSection="sobre" />
-    <header className="lg:hidden sticky top-0 bg-background/80 backdrop-blur-lg border-b border-border z-40 px-4 py-3 flex items-center gap-3">
-      <Link to="/" className="text-muted-foreground hover:text-foreground"><ArrowLeft className="w-5 h-5" /></Link>
-      <span className="font-bold text-foreground">Sobre</span>
-    </header>
+    <Header title="Sobre" showBack />
 
     <main className="lg:ml-[240px] pb-20 lg:pb-0">
       <article className="py-12 px-4">

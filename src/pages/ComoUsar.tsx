@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import comoUsarBanner from "@/assets/como-usar-banner.webp";
-import { ArrowLeft, Copy, Link as LinkIcon, Download, Smartphone, Monitor, HelpCircle, CheckCircle2 } from "lucide-react";
+import { Copy, Link as LinkIcon, Download, Smartphone, Monitor, HelpCircle, CheckCircle2 } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 
@@ -82,10 +83,7 @@ const ComoUsar = () => (
       howToSteps={howToSteps}
     />
     <Sidebar activeSection="como-usar" />
-    <header className="lg:hidden sticky top-0 bg-background/80 backdrop-blur-lg border-b border-border z-40 px-4 py-3 flex items-center gap-3">
-      <Link to="/" className="text-muted-foreground hover:text-foreground"><ArrowLeft className="w-5 h-5" /></Link>
-      <span className="font-bold text-foreground">Como Usar</span>
-    </header>
+    <Header title="Como Usar" showBack />
 
     <main className="lg:ml-[240px] pb-20 lg:pb-0">
       <article className="py-12 px-4">

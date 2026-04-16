@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Mail, MessageSquare, Send, Clock, CheckCircle2 } from "lucide-react";
+import { Mail, MessageSquare, Send, Clock, CheckCircle2 } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 
@@ -23,10 +24,7 @@ const Contato = () => {
         breadcrumbs={[{ name: "Início", path: "/" }, { name: "Contato", path: "/contato" }]}
       />
       <Sidebar activeSection="contato" />
-      <header className="lg:hidden sticky top-0 bg-background/80 backdrop-blur-lg border-b border-border z-40 px-4 py-3 flex items-center gap-3">
-        <Link to="/" className="text-muted-foreground hover:text-foreground"><ArrowLeft className="w-5 h-5" /></Link>
-        <span className="font-bold text-foreground">Contato</span>
-      </header>
+      <Header title="Contato" showBack />
 
       <main className="lg:ml-[240px] pb-20 lg:pb-0">
         <article className="py-12 px-4">
