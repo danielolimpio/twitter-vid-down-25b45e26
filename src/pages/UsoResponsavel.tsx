@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import { ArrowLeft, AlertTriangle, Shield, BookOpen, Users, Heart, Globe, Lock, Ban, Scale, FileText, CheckCircle, XCircle, HelpCircle, Mail, Gavel, ClipboardCheck, Eye, Info } from "lucide-react";
+import { AlertTriangle, Shield, BookOpen, Users, Heart, Globe, Lock, Ban, Scale, FileText, CheckCircle, XCircle, HelpCircle, Mail, Gavel, ClipboardCheck, Eye, Info } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { Badge } from "@/components/ui/badge";
