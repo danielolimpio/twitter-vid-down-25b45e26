@@ -251,7 +251,8 @@ const HeroSection = () => {
           className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mt-8"
           width={672}
           height={378}
-          loading="lazy"
+          fetchPriority="high"
+          decoding="async"
         />
       </div>
     </section>
