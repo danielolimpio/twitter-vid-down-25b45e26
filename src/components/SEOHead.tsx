@@ -178,8 +178,9 @@ const SEOHead = ({ title, description, path, keywords, breadcrumbs, faqItems, ho
 
     return () => {
       document.querySelectorAll('script[data-seo-head]').forEach(el => el.remove());
+      document.querySelectorAll('link[data-seo-head]').forEach(el => el.remove());
     };
-  }, [title, description, path, breadcrumbs, faqItems, howToSteps, noindex, softwareApp]);
+  }, [title, description, path, keywords, breadcrumbs, faqItems, howToSteps, noindex, softwareApp]);
 
   return null;
 };
