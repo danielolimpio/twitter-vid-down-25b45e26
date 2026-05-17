@@ -14,6 +14,7 @@ interface SEOHeadProps {
   title: string;
   description: string;
   path: string;
+  keywords?: string;
   breadcrumbs?: { name: string; path: string }[];
   faqItems?: { question: string; answer: string }[];
   howToSteps?: HowToStep[];
@@ -22,7 +23,7 @@ interface SEOHeadProps {
   softwareApp?: boolean;
 }
 
-const SEOHead = ({ title, description, path, breadcrumbs, faqItems, howToSteps, noindex, softwareApp }: SEOHeadProps) => {
+const SEOHead = ({ title, description, path, keywords, breadcrumbs, faqItems, howToSteps, noindex, softwareApp }: SEOHeadProps) => {
   useEffect(() => {
     const canonicalUrl = `${SITE_URL}${path}`;
 
@@ -41,7 +42,9 @@ const SEOHead = ({ title, description, path, breadcrumbs, faqItems, howToSteps, 
     };
 
     setMeta("name", "description", description);
-    setMeta("name", "robots", noindex ? "noindex, nofollow" : "index, follow");
+    setMeta("name", "robots", noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
+    setMeta("name", "googlebot", noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
+    if (keywords) setMeta("name", "keywords", keywords);
 
     // OG
     setMeta("property", "og:title", title);
@@ -66,6 +69,17 @@ const SEOHead = ({ title, description, path, breadcrumbs, faqItems, howToSteps, 
       document.head.appendChild(canonical);
     }
     canonical.setAttribute("href", canonicalUrl);
+
+    // Hreflang (pt-BR + x-default)
+    document.querySelectorAll('link[rel="alternate"][data-seo-head]').forEach(el => el.remove());
+    (["pt-BR", "x-default"] as const).forEach((hl) => {
+      const link = document.createElement("link");
+      link.setAttribute("rel", "alternate");
+      link.setAttribute("hreflang", hl);
+      link.setAttribute("href", canonicalUrl);
+      link.setAttribute("data-seo-head", "hreflang");
+      document.head.appendChild(link);
+    });
 
     // Remove old JSON-LD injected by this component
     document.querySelectorAll('script[data-seo-head]').forEach(el => el.remove());
@@ -164,8 +178,9 @@ const SEOHead = ({ title, description, path, breadcrumbs, faqItems, howToSteps, 
 
     return () => {
       document.querySelectorAll('script[data-seo-head]').forEach(el => el.remove());
+      document.querySelectorAll('link[data-seo-head]').forEach(el => el.remove());
     };
-  }, [title, description, path, breadcrumbs, faqItems, howToSteps, noindex, softwareApp]);
+  }, [title, description, path, keywords, breadcrumbs, faqItems, howToSteps, noindex, softwareApp]);
 
   return null;
 };

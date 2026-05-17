@@ -1,0 +1,18 @@
+# TwitterDown — Baixar Vídeos do Twitter (X)
+
+> Ferramenta online gratuita em português para baixar vídeos e GIFs do Twitter (X) em HD, Full HD 1080p e 4K, sem marca d'água e sem cadastro.
+
+TwitterDown (baixarvideostwitter.com) é um downloader web de vídeos do Twitter / X focado no público brasileiro. Funciona em qualquer navegador (Android, iPhone, Windows, Mac, Linux), suporta links twitter.com e x.com, e não armazena histórico no servidor — apenas no dispositivo do usuário.
+
+## Páginas
+- [Início — Baixar Vídeos do Twitter](/): cole o link do tweet e baixe o vídeo em HD, Full HD ou 4K.
+- [Como Usar](/como-usar): guia passo a passo para baixar vídeos do Twitter no celular (Android, iPhone) e computador.
+- [FAQ](/faq): perguntas frequentes sobre download de vídeos do Twitter, qualidade, formatos, GIFs e segurança.
+- [Sobre](/sobre): sobre o TwitterDown, missão e tecnologia.
+- [Contato](/contato): canal de contato para suporte e parcerias.
+- [Uso Responsável](/uso-responsavel): diretrizes sobre direitos autorais e uso ético da ferramenta.
+
+## Legal
+- [Política de Privacidade](/privacidade)
+- [Termos de Uso](/termos)
+- [DMCA](/dmca)

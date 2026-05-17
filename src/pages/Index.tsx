@@ -23,9 +23,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Baixar Vídeos Twitter - Download Grátis HD | TwitterDown"
-        description="Baixar vídeos do Twitter (X) grátis em HD, Full HD e 4K. Sem marca d'água, sem cadastro. A melhor ferramenta para download de vídeos do Twitter. Rápido e fácil!"
+        title="Baixar Vídeos Twitter - Download Grátis HD, Full HD e 4K | TwitterDown"
+        description="Baixar vídeos do Twitter (X) grátis, online e sem marca d'água. Download em HD, Full HD 1080p e 4K. Funciona no celular (Android, iPhone) e PC. Sem cadastro, rápido e ilimitado."
         path="/"
+        keywords="baixar vídeos twitter, baixar video do twitter, baixar video twitter sem marca d'agua, baixar video twitter hd, baixar video twitter 1080p, baixar video twitter 4k, download video twitter, baixar gif twitter, baixar tweet, baixar video x, baixar video twitter no celular, baixar video twitter no iphone, twitterdown"
         breadcrumbs={[{ name: "Início", path: "/" }]}
         faqItems={homeFaqs}
         softwareApp
