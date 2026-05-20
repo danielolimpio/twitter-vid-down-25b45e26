@@ -35,7 +35,7 @@ const Footer = () => (
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
-            <img src={link.img} alt={link.label} className="w-4 h-4 rounded" />
+            <img src={link.img} alt={link.label} width={16} height={16} loading="lazy" decoding="async" className="w-4 h-4 rounded" />
             {link.label}
           </a>
         ))}
