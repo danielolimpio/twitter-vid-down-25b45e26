@@ -10,7 +10,7 @@ import tiktokImg from "@/assets/baixar-tiktok.png";
 import kwaiImg from "@/assets/baixar-kwai.png";
 
 const SiteLogo = () => (
-  <img src={logoImg} alt="TwitterDown" className="w-7 h-7 rounded" />
+  <img src={logoImg} alt="TwitterDown" width={28} height={28} decoding="async" className="w-7 h-7 rounded" />
 );
 
 const navItems = [
