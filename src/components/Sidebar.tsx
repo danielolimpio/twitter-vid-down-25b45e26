@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Download, Home, HelpCircle, Info, FileText, Mail } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
-import logoImg from "@/assets/logo.webp";
+
 import instagramImg from "@/assets/baixar-instagram.png";
 import facebookImg from "@/assets/baixar-facebook.png";
 import youtubeImg from "@/assets/baixar-youtube.png";
@@ -10,7 +10,7 @@ import tiktokImg from "@/assets/baixar-tiktok.png";
 import kwaiImg from "@/assets/baixar-kwai.png";
 
 const SiteLogo = () => (
-  <img src={logoImg} alt="TwitterDown" width={28} height={28} decoding="async" className="w-7 h-7 rounded" />
+  <img src="/logo.webp" alt="TwitterDown" width={28} height={28} decoding="async" className="w-7 h-7 rounded" />
 );
 
 const navItems = [
