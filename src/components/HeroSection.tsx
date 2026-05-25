@@ -1,9 +1,9 @@
 import { Download, Link as LinkIcon, ClipboardPaste, Play, Clock, User, X } from "lucide-react";
 import { Link } from "react-router-dom";
-
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { addToHistory } from "@/lib/downloadHistory";
+import { ImageWithSkeleton } from "@/components/ImageWithSkeleton";
 
 interface VideoVariant {
   url: string;
