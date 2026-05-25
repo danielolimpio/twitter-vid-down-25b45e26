@@ -6,6 +6,7 @@ import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import { ImageWithSkeleton } from "@/components/ImageWithSkeleton";
 
 const Downloads = () => {
   const [history, setHistory] = useState<DownloadHistoryItem[]>([]);

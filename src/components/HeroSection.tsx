@@ -248,7 +248,7 @@ const HeroSection = () => {
           </div>
         )}
 
-        <img
+        <ImageWithSkeleton
           src="/hero-banner.webp"
           alt="Baixar vídeos do Twitter - Download rápido e gratuito"
           className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mt-8"
@@ -256,6 +256,7 @@ const HeroSection = () => {
           height={378}
           fetchPriority="high"
           decoding="async"
+          containerClassName="w-full max-w-2xl mx-auto mt-8"
         />
       </div>
     </section>
