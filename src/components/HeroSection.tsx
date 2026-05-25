@@ -1,9 +1,9 @@
 import { Download, Link as LinkIcon, ClipboardPaste, Play, Clock, User, X } from "lucide-react";
 import { Link } from "react-router-dom";
-
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { addToHistory } from "@/lib/downloadHistory";
+import { ImageWithSkeleton } from "@/components/ImageWithSkeleton";
 
 interface VideoVariant {
   url: string;
@@ -184,11 +184,14 @@ const HeroSection = () => {
               <div key={i} className="bg-card border border-border rounded-xl overflow-hidden">
                 {/* Thumbnail */}
                 {video.thumbnail && (
-                  <div className="relative">
-                    <img
+                  <div className="relative w-full h-48">
+                    <ImageWithSkeleton
                       src={video.thumbnail}
                       alt="Thumbnail do vídeo"
+                      width={640}
+                      height={360}
                       className="w-full h-48 object-cover"
+                      containerClassName="w-full h-48"
                     />
                     <div className="absolute inset-0 bg-foreground/20 flex items-center justify-center">
                       <div className="w-12 h-12 bg-primary/90 rounded-full flex items-center justify-center">
@@ -245,7 +248,7 @@ const HeroSection = () => {
           </div>
         )}
 
-        <img
+        <ImageWithSkeleton
           src="/hero-banner.webp"
           alt="Baixar vídeos do Twitter - Download rápido e gratuito"
           className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mt-8"
@@ -253,6 +256,7 @@ const HeroSection = () => {
           height={378}
           fetchPriority="high"
           decoding="async"
+          containerClassName="w-full max-w-2xl mx-auto mt-8"
         />
       </div>
     </section>

@@ -6,6 +6,7 @@ import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import { ImageWithSkeleton } from "@/components/ImageWithSkeleton";
 
 const Downloads = () => {
   const [history, setHistory] = useState<DownloadHistoryItem[]>([]);
@@ -71,7 +72,13 @@ const Downloads = () => {
                 {history.map((item) => (
                   <div key={item.id} className="bg-card border border-border rounded-xl p-4 flex gap-4">
                     {item.thumbnail && (
-                      <img src={item.thumbnail} alt="Thumbnail do vídeo baixado" loading="lazy" className="w-24 h-16 object-cover rounded-lg flex-shrink-0" />
+                      <ImageWithSkeleton
+                        src={item.thumbnail}
+                        alt="Thumbnail do vídeo baixado"
+                        loading="lazy"
+                        className="w-24 h-16 object-cover rounded-lg flex-shrink-0"
+                        containerClassName="w-24 h-16 flex-shrink-0"
+                      />
                     )}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">

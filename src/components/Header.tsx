@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { HelpCircle, Bell, ArrowLeft, Clock, User, Trash2, ExternalLink, Download } from "lucide-react";
 import { getHistory, removeFromHistory, clearHistory, DownloadHistoryItem } from "@/lib/downloadHistory";
 import ThemeToggle from "./ThemeToggle";
+import { ImageWithSkeleton } from "@/components/ImageWithSkeleton";
 
 interface HeaderProps {
   title?: string;
@@ -120,7 +121,16 @@ const Header = ({ title, showBack = false }: HeaderProps) => {
                     history.slice(0, 10).map((item) => (
                       <div key={item.id} className="flex items-start gap-3 px-4 py-3 border-b border-border/50 hover:bg-accent/50 transition-colors">
                         {item.thumbnail && (
-                          <img src={item.thumbnail} alt="" width={48} height={32} loading="lazy" decoding="async" className="w-12 h-8 object-cover rounded flex-shrink-0" />
+                          <ImageWithSkeleton
+                            src={item.thumbnail}
+                            alt=""
+                            width={48}
+                            height={32}
+                            loading="lazy"
+                            decoding="async"
+                            className="w-12 h-8 object-cover rounded flex-shrink-0"
+                            containerClassName="w-12 h-8 flex-shrink-0"
+                          />
                         )}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-1.5">
