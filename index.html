@@ -16,8 +16,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="image" href="/hero-banner.webp" type="image/webp" fetchpriority="high" />
     <link rel="preload" as="image" href="/logo.webp" type="image/webp" fetchpriority="high" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+    <!-- Non-blocking font load: preloads CSS, then swaps to stylesheet on load. System-ui fallback renders instantly. -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Critical above-the-fold CSS: prevents FOUC and CLS before React/Tailwind hydrate -->
+    <style>
+      :root{--bg:#fff;--fg:#141414;--muted:#5a5a5a;--border:#e3e7eb;--primary:#1da1f2}
+      @media (prefers-color-scheme: dark){:root{--bg:#000;--fg:#ededed;--muted:#b8b8b8;--border:#2e2e2e}}
+      html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+      #root{min-height:100vh}
+      img{max-width:100%;height:auto}
+    </style>
     <title>Baixar Vídeos do Twitter Grátis em HD | TwitterDown</title>
     <meta name="description" content="Baixe vídeos do Twitter (X) grátis em HD e Full HD. Sem marca d&#39;água, sem cadastro. Rápido, fácil e direto no navegador.">
 
