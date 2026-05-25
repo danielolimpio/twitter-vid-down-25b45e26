@@ -1,6 +1,6 @@
 import { Download, Link as LinkIcon, ClipboardPaste, Play, Clock, User, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroBanner from "@/assets/hero-banner.webp";
+
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { addToHistory } from "@/lib/downloadHistory";
@@ -246,7 +246,7 @@ const HeroSection = () => {
         )}
 
         <img
-          src={heroBanner}
+          src="/hero-banner.webp"
           alt="Baixar vídeos do Twitter - Download rápido e gratuito"
           className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg mt-8"
           width={672}
