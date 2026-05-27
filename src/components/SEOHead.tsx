@@ -10,13 +10,16 @@ interface SEOHeadProps {
   description: string;
   /** Path without locale prefix, starting with "/". */
   path: string;
-  locale: Locale;
+  /** Defaults to the active locale from LocaleProvider when omitted. */
+  locale?: Locale;
   keywords?: string;
   faqItems?: FAQItem[];
   howToSteps?: HowToStep[];
   breadcrumbs?: Breadcrumb[];
   noindex?: boolean;
   webApp?: boolean;
+  /** Legacy alias for webApp. */
+  softwareApp?: boolean;
   image?: string;
 }
 
