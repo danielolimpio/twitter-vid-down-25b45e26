@@ -140,7 +140,7 @@ const SEOHead = ({
       });
     }
 
-    if (webApp) {
+    if (isWebApp) {
       addLd("webapp", {
         "@context": "https://schema.org",
         "@type": "WebApplication",
