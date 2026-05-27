@@ -170,7 +170,7 @@ const SEOHead = ({
       document.querySelectorAll('meta[data-seo-head]').forEach(el => el.remove());
       document.querySelectorAll('script[data-seo-head]').forEach(el => el.remove());
     };
-  }, [title, description, path, locale, keywords, faqItems, howToSteps, breadcrumbs, noindex, webApp, image]);
+  }, [title, description, path, locale, keywords, faqItems, howToSteps, breadcrumbs, noindex, isWebApp, image]);
 
   return null;
 };
