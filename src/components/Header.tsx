@@ -3,7 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import { HelpCircle, Bell, ArrowLeft, Clock, User, Trash2, ExternalLink, Download } from "lucide-react";
 import { getHistory, removeFromHistory, clearHistory, DownloadHistoryItem } from "@/lib/downloadHistory";
 import ThemeToggle from "./ThemeToggle";
+import LanguageSwitcher from "./LanguageSwitcher";
 import { ImageWithSkeleton } from "@/components/ImageWithSkeleton";
+import { useLocale } from "@/i18n/LocaleProvider";
+import { localizedPath } from "@/i18n/config";
 
 interface HeaderProps {
   title?: string;
