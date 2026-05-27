@@ -7,34 +7,33 @@ import SEOContent from "@/components/SEOContent";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import { useLocale } from "@/i18n/LocaleProvider";
 
-const homeFaqs = [
-  { question: "Como baixar vídeos do Twitter?", answer: "Copie o link do tweet que contém o vídeo, cole no campo de download em nosso site e clique em 'Baixar Agora'. Escolha a qualidade desejada e pronto!" },
-  { question: "O TwitterDown é gratuito?", answer: "Sim, 100% gratuito! Não cobramos nada para baixar vídeos do Twitter. Não há planos pagos, assinaturas ou taxas ocultas." },
-  { question: "Preciso instalar algum programa?", answer: "Não! O TwitterDown funciona diretamente no navegador. Não é necessário instalar nenhum software, extensão ou aplicativo." },
-  { question: "Funciona no celular?", answer: "Sim! Funciona perfeitamente em celulares Android e iPhone, tablets e computadores." },
-  { question: "Os vídeos são baixados com marca d'água?", answer: "Não! Todos os vídeos são baixados na qualidade original, sem nenhuma marca d'água ou alteração." },
-  { question: "Qual a qualidade dos vídeos baixados?", answer: "Oferecemos download em várias qualidades: SD (480p), HD (720p), Full HD (1080p) e 4K quando disponível no tweet original." },
-  { question: "É seguro usar o TwitterDown?", answer: "Sim, completamente seguro! Não armazenamos seus dados pessoais, não pedimos login e não temos acesso à sua conta do Twitter." },
-  { question: "Posso baixar GIFs do Twitter?", answer: "Sim! Além de vídeos, você também pode baixar GIFs animados do Twitter usando o TwitterDown." },
-];
+const META = {
+  en: { title: "Twitter Video Downloader - Download X Videos Free in HD | TwitterDown", desc: "Free Twitter / X video downloader. Save videos and GIFs in MP4, HD and Full HD 1080p without watermark. No signup. Works on iPhone, Android and desktop." },
+  pt: { title: "Baixar Vídeos do Twitter (X) Grátis em HD | TwitterDown", desc: "Baixar vídeos do Twitter (X) grátis em HD, Full HD 1080p e 4K. Sem marca d'água, sem cadastro. Funciona no celular (Android, iPhone) e no PC." },
+  es: { title: "Descargar Videos de Twitter (X) Gratis en HD | TwitterDown", desc: "Descarga videos de Twitter (X) gratis en MP4, HD y Full HD 1080p. Sin marca de agua, sin registro. iPhone, Android y PC." },
+  id: { title: "Pengunduh Video Twitter (X) Gratis HD | TwitterDown", desc: "Unduh video Twitter (X) gratis dalam MP4, HD dan Full HD 1080p. Tanpa watermark, tanpa pendaftaran. iPhone, Android, dan PC." },
+  tr: { title: "Twitter (X) Video İndirici - Ücretsiz HD İndir | TwitterDown", desc: "Twitter / X videolarını ücretsiz MP4, HD ve Full HD 1080p olarak indirin. Filigransız, kayıtsız. iPhone, Android ve masaüstü." },
+  hi: { title: "ट्विटर वीडियो डाउनलोडर - मुफ्त HD डाउनलोड | TwitterDown", desc: "ट्विटर (X) वीडियो मुफ्त MP4, HD और Full HD 1080p में डाउनलोड करें। बिना वॉटरमार्क, बिना साइन-अप। iPhone, Android, और PC।" },
+} as const;
 
 const Index = () => {
+  const { locale, t } = useLocale();
+  const meta = (META as Record<string, { title: string; desc: string }>)[locale] ?? META.en;
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Baixar Vídeos Twitter - Download Grátis HD, Full HD e 4K | TwitterDown"
-        description="Baixar vídeos do Twitter (X) grátis, online e sem marca d'água. Download em HD, Full HD 1080p e 4K. Funciona no celular (Android, iPhone) e PC. Sem cadastro, rápido e ilimitado."
+        title={meta.title}
+        description={meta.desc}
         path="/"
-        keywords="baixar vídeos twitter, baixar video do twitter, baixar video twitter sem marca d'agua, baixar video twitter hd, baixar video twitter 1080p, baixar video twitter 4k, download video twitter, baixar gif twitter, baixar tweet, baixar video x, baixar video twitter no celular, baixar video twitter no iphone, twitterdown"
-        breadcrumbs={[{ name: "Início", path: "/" }]}
-        faqItems={homeFaqs}
-        softwareApp
+        keywords="twitter video downloader, download twitter video, x video downloader, twitter to mp4, twitter gif downloader, save twitter video, twitter mp4 download, twitter video hd"
+        breadcrumbs={[{ name: t.nav.home, path: "/" }]}
+        faqItems={t.faqs.map(f => ({ question: f.q, answer: f.a }))}
+        webApp
       />
       <Sidebar />
-
       <Header />
-
       <main className="lg:ml-[240px] pb-20 lg:pb-0">
         <HeroSection />
         <FeaturesSection />

@@ -1,186 +1,176 @@
 import { useEffect } from "react";
+import { LOCALES, Locale, LOCALE_HTML_LANG, LOCALE_OG, SITE_URL, localizedPath, DEFAULT_LOCALE } from "@/i18n/config";
+import { useLocale } from "@/i18n/LocaleProvider";
 
-const SITE_URL = "https://baixarvideostwitter.com";
-const SITE_NAME = "TwitterDown";
-const DEFAULT_IMAGE = "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8ea8799f-241c-4ee9-933c-fd1990452197/id-preview-9d112ed8--46e28d82-1c24-4171-a224-b46d2746c035.lovable.app-1775843788600.png";
-
-interface HowToStep {
-  name: string;
-  text: string;
-  image?: string;
-}
+interface FAQItem { question: string; answer: string; }
+interface HowToStep { name: string; text: string; }
+interface Breadcrumb { name: string; path: string; }
 
 interface SEOHeadProps {
   title: string;
   description: string;
+  /** Path without locale prefix, starting with "/". */
   path: string;
+  /** Defaults to the active locale from LocaleProvider when omitted. */
+  locale?: Locale;
   keywords?: string;
-  breadcrumbs?: { name: string; path: string }[];
-  faqItems?: { question: string; answer: string }[];
+  faqItems?: FAQItem[];
   howToSteps?: HowToStep[];
+  breadcrumbs?: Breadcrumb[];
   noindex?: boolean;
-  /** Inject SoftwareApplication schema (use on homepage) */
+  webApp?: boolean;
+  /** Legacy alias for webApp. */
   softwareApp?: boolean;
+  image?: string;
 }
 
-const SEOHead = ({ title, description, path, keywords, breadcrumbs, faqItems, howToSteps, noindex, softwareApp }: SEOHeadProps) => {
-  useEffect(() => {
-    const canonicalUrl = `${SITE_URL}${path}`;
+const DEFAULT_IMAGE = "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8ea8799f-241c-4ee9-933c-fd1990452197/id-preview-9d112ed8--46e28d82-1c24-4171-a224-b46d2746c035.lovable.app-1775843788600.png";
 
-    // Title
+const SEOHead = ({
+  title, description, path, locale: localeProp, keywords, faqItems, howToSteps, breadcrumbs, noindex, webApp, softwareApp, image,
+}: SEOHeadProps) => {
+  const { locale: ctxLocale } = useLocale();
+  const locale = localeProp ?? ctxLocale;
+  const isWebApp = webApp ?? softwareApp;
+  useEffect(() => {
+    const canonical = `${SITE_URL}${localizedPath(locale, path)}`;
+    const ogImage = image || DEFAULT_IMAGE;
+
     document.title = title;
 
-    // Helper to set/create meta
-    const setMeta = (attr: string, key: string, content: string) => {
+    const setMeta = (attr: "name" | "property", key: string, content: string) => {
       let el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute(attr, key);
-        document.head.appendChild(el);
-      }
+      if (!el) { el = document.createElement("meta"); el.setAttribute(attr, key); document.head.appendChild(el); }
       el.setAttribute("content", content);
     };
 
     setMeta("name", "description", description);
     setMeta("name", "robots", noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
-    setMeta("name", "googlebot", noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
     if (keywords) setMeta("name", "keywords", keywords);
 
-    // OG
     setMeta("property", "og:title", title);
     setMeta("property", "og:description", description);
-    setMeta("property", "og:url", canonicalUrl);
+    setMeta("property", "og:url", canonical);
     setMeta("property", "og:type", "website");
-    setMeta("property", "og:site_name", SITE_NAME);
-    setMeta("property", "og:locale", "pt_BR");
-    setMeta("property", "og:image", DEFAULT_IMAGE);
+    setMeta("property", "og:site_name", "TwitterDown");
+    setMeta("property", "og:locale", LOCALE_OG[locale]);
+    setMeta("property", "og:image", ogImage);
+    LOCALES.filter((l) => l !== locale).forEach((l) => {
+      // ensure alternate locales
+      const meta = document.createElement("meta");
+      meta.setAttribute("property", "og:locale:alternate");
+      meta.setAttribute("content", LOCALE_OG[l]);
+      meta.setAttribute("data-seo-head", "og-alt");
+      document.head.appendChild(meta);
+    });
 
-    // Twitter Cards
     setMeta("name", "twitter:card", "summary_large_image");
     setMeta("name", "twitter:title", title);
     setMeta("name", "twitter:description", description);
-    setMeta("name", "twitter:image", DEFAULT_IMAGE);
+    setMeta("name", "twitter:image", ogImage);
 
     // Canonical
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.setAttribute("rel", "canonical");
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute("href", canonicalUrl);
+    document.querySelectorAll('link[rel="canonical"]').forEach(el => el.remove());
+    const c = document.createElement("link");
+    c.setAttribute("rel", "canonical");
+    c.setAttribute("href", canonical);
+    document.head.appendChild(c);
 
-    // Hreflang (pt-BR + x-default)
-    document.querySelectorAll('link[rel="alternate"][data-seo-head]').forEach(el => el.remove());
-    (["pt-BR", "x-default"] as const).forEach((hl) => {
+    // Clean previous head injections
+    document.querySelectorAll('link[data-seo-head]').forEach(el => el.remove());
+    document.querySelectorAll('script[data-seo-head]').forEach(el => el.remove());
+
+    // hreflang for all locales + x-default
+    LOCALES.forEach((l) => {
       const link = document.createElement("link");
       link.setAttribute("rel", "alternate");
-      link.setAttribute("hreflang", hl);
-      link.setAttribute("href", canonicalUrl);
+      link.setAttribute("hreflang", LOCALE_HTML_LANG[l]);
+      link.setAttribute("href", `${SITE_URL}${localizedPath(l, path)}`);
       link.setAttribute("data-seo-head", "hreflang");
       document.head.appendChild(link);
     });
+    const xDefault = document.createElement("link");
+    xDefault.setAttribute("rel", "alternate");
+    xDefault.setAttribute("hreflang", "x-default");
+    xDefault.setAttribute("href", `${SITE_URL}${localizedPath(DEFAULT_LOCALE, path)}`);
+    xDefault.setAttribute("data-seo-head", "hreflang");
+    document.head.appendChild(xDefault);
 
-    // Remove old JSON-LD injected by this component
-    document.querySelectorAll('script[data-seo-head]').forEach(el => el.remove());
+    // JSON-LD injectors
+    const addLd = (label: string, payload: unknown) => {
+      const s = document.createElement("script");
+      s.type = "application/ld+json";
+      s.setAttribute("data-seo-head", label);
+      s.textContent = JSON.stringify(payload);
+      document.head.appendChild(s);
+    };
 
-    // BreadcrumbList
     if (breadcrumbs && breadcrumbs.length > 0) {
-      const bcSchema = {
+      addLd("breadcrumb", {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        "itemListElement": breadcrumbs.map((bc, i) => ({
+        itemListElement: breadcrumbs.map((b, i) => ({
           "@type": "ListItem",
-          "position": i + 1,
-          "name": bc.name,
-          "item": `${SITE_URL}${bc.path}`,
+          position: i + 1,
+          name: b.name,
+          item: `${SITE_URL}${localizedPath(locale, b.path)}`,
         })),
-      };
-      const script = document.createElement("script");
-      script.type = "application/ld+json";
-      script.setAttribute("data-seo-head", "breadcrumb");
-      script.textContent = JSON.stringify(bcSchema);
-      document.head.appendChild(script);
+      });
     }
 
-    // FAQPage
     if (faqItems && faqItems.length > 0) {
-      const faqSchema = {
+      addLd("faq", {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "mainEntity": faqItems.map(f => ({
+        mainEntity: faqItems.map(f => ({
           "@type": "Question",
-          "name": f.question,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": f.answer,
-          },
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
         })),
-      };
-      const script = document.createElement("script");
-      script.type = "application/ld+json";
-      script.setAttribute("data-seo-head", "faq");
-      script.textContent = JSON.stringify(faqSchema);
-      document.head.appendChild(script);
+      });
     }
 
-    // HowTo
     if (howToSteps && howToSteps.length > 0) {
-      const howToSchema = {
+      addLd("howto", {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": title,
-        "description": description,
-        "step": howToSteps.map((step, i) => ({
-          "@type": "HowToStep",
-          "position": i + 1,
-          "name": step.name,
-          "text": step.text,
-          ...(step.image ? { "image": step.image } : {}),
-        })),
-      };
-      const script = document.createElement("script");
-      script.type = "application/ld+json";
-      script.setAttribute("data-seo-head", "howto");
-      script.textContent = JSON.stringify(howToSchema);
-      document.head.appendChild(script);
+        name: title,
+        description,
+        step: howToSteps.map((s, i) => ({ "@type": "HowToStep", position: i + 1, name: s.name, text: s.text })),
+      });
     }
 
-    // SoftwareApplication (for homepage)
-    if (softwareApp) {
-      const appSchema = {
+    if (isWebApp) {
+      addLd("webapp", {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Baixar Videos Twitter - TwitterDown",
-        "url": SITE_URL,
-        "description": "Ferramenta online gratuita para baixar vídeos do Twitter (X) em HD, Full HD 1080p e 4K. Sem marca d'água, sem cadastro.",
-        "applicationCategory": "MultimediaApplication",
-        "operatingSystem": "Any",
-        "browserRequirements": "Requires JavaScript. Requires HTML5.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "BRL",
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "ratingCount": "12450",
-          "bestRating": "5",
-        },
-      };
-      const script = document.createElement("script");
-      script.type = "application/ld+json";
-      script.setAttribute("data-seo-head", "softwareapp");
-      script.textContent = JSON.stringify(appSchema);
-      document.head.appendChild(script);
+        name: "TwitterDown - Twitter Video Downloader",
+        url: SITE_URL,
+        description,
+        applicationCategory: "MultimediaApplication",
+        operatingSystem: "Any",
+        browserRequirements: "Requires JavaScript. Requires HTML5.",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", ratingCount: "12450", bestRating: "5" },
+      });
+      addLd("softwareapp", {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: "TwitterDown",
+        url: SITE_URL,
+        description,
+        applicationCategory: "MultimediaApplication",
+        operatingSystem: "Any",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      });
     }
 
     return () => {
-      document.querySelectorAll('script[data-seo-head]').forEach(el => el.remove());
       document.querySelectorAll('link[data-seo-head]').forEach(el => el.remove());
+      document.querySelectorAll('meta[data-seo-head]').forEach(el => el.remove());
+      document.querySelectorAll('script[data-seo-head]').forEach(el => el.remove());
     };
-  }, [title, description, path, keywords, breadcrumbs, faqItems, howToSteps, noindex, softwareApp]);
+  }, [title, description, path, locale, keywords, faqItems, howToSteps, breadcrumbs, noindex, isWebApp, image]);
 
   return null;
 };
