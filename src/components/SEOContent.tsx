@@ -4,7 +4,7 @@ import { useLocale } from "@/i18n/LocaleProvider";
 interface Block { h2: string; alt: string; paras: string[]; whyH3: string; why: string[]; }
 
 
-const CONTENT = {
+const CONTENT: Record<string, Block> = {
   en: {
     h2: "The Best Twitter Video Downloader in 2026",
     alt: "Download Twitter videos free in HD, Full HD and 4K - TwitterDown",
