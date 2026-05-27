@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { LOCALES, Locale, LOCALE_HTML_LANG, LOCALE_OG, SITE_URL, localizedPath, DEFAULT_LOCALE } from "@/i18n/config";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 interface FAQItem { question: string; answer: string; }
 interface HowToStep { name: string; text: string; }
