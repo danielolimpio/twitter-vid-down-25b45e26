@@ -27,8 +27,11 @@ interface SEOHeadProps {
 const DEFAULT_IMAGE = "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8ea8799f-241c-4ee9-933c-fd1990452197/id-preview-9d112ed8--46e28d82-1c24-4171-a224-b46d2746c035.lovable.app-1775843788600.png";
 
 const SEOHead = ({
-  title, description, path, locale, keywords, faqItems, howToSteps, breadcrumbs, noindex, webApp, image,
+  title, description, path, locale: localeProp, keywords, faqItems, howToSteps, breadcrumbs, noindex, webApp, softwareApp, image,
 }: SEOHeadProps) => {
+  const { locale: ctxLocale } = useLocale();
+  const locale = localeProp ?? ctxLocale;
+  const isWebApp = webApp ?? softwareApp;
   useEffect(() => {
     const canonical = `${SITE_URL}${localizedPath(locale, path)}`;
     const ogImage = image || DEFAULT_IMAGE;
