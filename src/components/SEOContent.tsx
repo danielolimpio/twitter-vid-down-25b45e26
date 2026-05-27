@@ -1,8 +1,9 @@
 import seoBanner from "@/assets/seo-banner.webp";
 import { useLocale } from "@/i18n/LocaleProvider";
 
-// Locale-aware long-form SEO block. English by default for global reach,
-// PT preserved for the historical pt-BR audience.
+interface Block { h2: string; alt: string; paras: string[]; whyH3: string; why: string[]; }
+
+
 const CONTENT = {
   en: {
     h2: "The Best Twitter Video Downloader in 2026",
