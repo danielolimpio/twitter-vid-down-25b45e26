@@ -173,6 +173,7 @@ const Header = ({ title, showBack = false }: HeaderProps) => {
             )}
           </div>
 
+          <LanguageSwitcher />
           <div className="hidden lg:block">
             <ThemeToggle />
           </div>
