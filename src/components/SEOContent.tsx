@@ -45,11 +45,11 @@ const CONTENT: Record<string, Block> = {
       "Core Web Vitals rápidos, acessível e mobile-first",
     ],
   },
-} as const;
+};
 
 const SEOContent = () => {
   const { locale } = useLocale();
-  const c = (CONTENT as Record<string, typeof CONTENT.en>)[locale] ?? CONTENT.en;
+  const c = CONTENT[locale] ?? CONTENT.en;
   return (
     <section id="about" className="py-12 px-4">
       <div className="max-w-2xl mx-auto">
