@@ -1,33 +1,24 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { Download, Home, HelpCircle, Info, FileText, Mail } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
-
-
 import instagramImg from "@/assets/baixar-instagram.png";
 import facebookImg from "@/assets/baixar-facebook.png";
 import youtubeImg from "@/assets/baixar-youtube.png";
 import tiktokImg from "@/assets/baixar-tiktok.png";
 import kwaiImg from "@/assets/baixar-kwai.png";
+import { useLocale } from "@/i18n/LocaleProvider";
+import { localizedPath } from "@/i18n/config";
 
 const SiteLogo = () => (
   <img src="/logo.webp" alt="TwitterDown" width={28} height={28} decoding="async" className="w-7 h-7 rounded" />
 );
 
-const navItems = [
-  { id: "/", label: "Início", icon: Home },
-  { id: "/downloads", label: "Downloads", icon: Download },
-  { id: "/sobre", label: "Sobre", icon: Info },
-  { id: "/como-usar", label: "Como Usar", icon: FileText },
-  { id: "/faq", label: "FAQ", icon: HelpCircle },
-  { id: "/contato", label: "Contato", icon: Mail },
-];
-
 const externalLinks = [
-  { label: "Baixar Instagram", url: "https://baixarvideosinstagram.com", img: instagramImg },
-  { label: "Baixar Facebook", url: "https://baixarvideosfacebook.com", img: facebookImg },
-  { label: "Baixar Youtube", url: "https://baixarvideoyoutube.com", img: youtubeImg },
-  { label: "Baixar TikTok", url: "https://baixarvideostiktok.com", img: tiktokImg },
-  { label: "Baixar Kwai", url: "https://baixarvideoskwai.com", img: kwaiImg },
+  { label: "Instagram", url: "https://baixarvideosinstagram.com", img: instagramImg },
+  { label: "Facebook", url: "https://baixarvideosfacebook.com", img: facebookImg },
+  { label: "YouTube", url: "https://baixarvideoyoutube.com", img: youtubeImg },
+  { label: "TikTok", url: "https://baixarvideostiktok.com", img: tiktokImg },
+  { label: "Kwai", url: "https://baixarvideoskwai.com", img: kwaiImg },
 ];
 
 interface SidebarProps {
@@ -37,22 +28,29 @@ interface SidebarProps {
 const Sidebar = ({ activeSection }: SidebarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t, locale } = useLocale();
+
+  const homePath = localizedPath(locale, "/");
+  const navItems = [
+    { id: localizedPath(locale, "/"), label: t.nav.home, icon: Home },
+    { id: localizedPath(locale, "/twitter-video-downloader"), label: t.nav.downloader, icon: Download },
+    { id: localizedPath(locale, "/twitter-to-mp4"), label: t.nav.toMp4, icon: FileText },
+    { id: localizedPath(locale, "/download-twitter-gif"), label: t.nav.gif, icon: Info },
+    { id: localizedPath(locale, "/faq"), label: t.nav.faq, icon: HelpCircle },
+    { id: localizedPath(locale, "/contato"), label: t.footer.contact, icon: Mail },
+  ];
 
   const currentPath = activeSection || location.pathname;
-  const isActive = (id: string) => {
-    if (id === "/") return currentPath === "/" || currentPath === "home";
-    return currentPath === id || currentPath === id.slice(1);
-  };
+  const isActive = (id: string) => currentPath === id;
 
   return (
     <>
-      {/* Desktop Sidebar */}
       <aside className="hidden lg:flex flex-col fixed left-0 top-0 h-full w-[240px] border-r border-border bg-sidebar p-4 z-50">
-        <button onClick={() => navigate("/")} className="flex items-center gap-3 px-3 py-2 mb-2 text-left">
+        <button onClick={() => navigate(homePath)} className="flex items-center gap-3 px-3 py-2 mb-2 text-left">
           <SiteLogo />
           <div>
             <h1 className="font-bold text-foreground text-lg leading-tight">TwitterDown</h1>
-            <p className="text-xs text-muted-foreground">Baixar Vídeos</p>
+            <p className="text-xs text-muted-foreground">{t.tagline}</p>
           </div>
         </button>
 
@@ -72,9 +70,8 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
             </button>
           ))}
 
-          {/* External download links */}
           <div className="pt-4 mt-4 border-t border-border">
-            <p className="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Outros Baixadores</p>
+            <p className="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">More Downloaders</p>
             {externalLinks.map((link) => (
               <a
                 key={link.url}
@@ -92,13 +89,12 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
 
         <div className="mt-auto pt-4 border-t border-border">
           <div className="flex items-center justify-between px-3">
-            <span className="text-xs text-muted-foreground">TwitterDown v1.0</span>
+            <span className="text-xs text-muted-foreground">TwitterDown v2.0</span>
             <ThemeToggle />
           </div>
         </div>
       </aside>
 
-      {/* Mobile Bottom Nav */}
       <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-background border-t border-border z-50 flex items-center justify-around px-2 py-2 safe-area-bottom">
         {navItems.slice(0, 5).map((item) => (
           <button
