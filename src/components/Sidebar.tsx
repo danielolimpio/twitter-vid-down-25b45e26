@@ -78,7 +78,7 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 w-full px-3 py-2 rounded-full text-[14px] font-medium text-sidebar-foreground hover:bg-accent transition-colors"
+                className="flex items-center gap-3 w-full px-3 py-2 rounded-full text-[14px] font-medium whitespace-nowrap text-sidebar-foreground hover:bg-accent transition-colors"
               >
                 <img src={link.img} alt={link.label} width={20} height={20} loading="lazy" decoding="async" className="w-5 h-5 rounded" />
                 {link.label}
