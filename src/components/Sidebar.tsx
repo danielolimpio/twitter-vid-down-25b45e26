@@ -59,7 +59,7 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
             <button
               key={item.id}
               onClick={() => navigate(item.id)}
-              className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-full text-[15px] font-medium transition-colors ${
+              className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-full text-[15px] font-medium whitespace-nowrap transition-colors ${
                 isActive(item.id)
                   ? "bg-sidebar-accent text-sidebar-accent-foreground"
                   : "text-sidebar-foreground hover:bg-accent"
