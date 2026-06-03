@@ -70,7 +70,7 @@ const FAQ = () => {
       <Sidebar activeSection="faq" />
       <Header title="FAQ" showBack />
 
-      <main className="lg:ml-[240px] pb-20 lg:pb-0">
+      <main className="lg:ml-[280px] pb-20 lg:pb-0">
         <article className="py-12 px-4">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-10">

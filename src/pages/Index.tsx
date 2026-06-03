@@ -34,7 +34,7 @@ const Index = () => {
       />
       <Sidebar />
       <Header />
-      <main className="lg:ml-[240px] pb-20 lg:pb-0">
+      <main className="lg:ml-[280px] pb-20 lg:pb-0">
         <HeroSection />
         <FeaturesSection />
         <HowToSection />

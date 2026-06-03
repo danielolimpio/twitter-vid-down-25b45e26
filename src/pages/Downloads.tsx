@@ -43,7 +43,7 @@ const Downloads = () => {
 
       <Header title="Downloads" showBack />
 
-      <main className="lg:ml-[240px] pb-20 lg:pb-0">
+      <main className="lg:ml-[280px] pb-20 lg:pb-0">
         <section className="py-12 px-4">
           <div className="max-w-2xl mx-auto">
             <div className="flex items-center justify-between mb-8">

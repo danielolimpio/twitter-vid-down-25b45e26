@@ -57,7 +57,7 @@ const Header = ({ title, showBack = false }: HeaderProps) => {
 
   return (
     <header className="sticky top-0 bg-background/80 backdrop-blur-lg border-b border-border z-40 px-4 py-3">
-      <div className="lg:ml-[240px] flex items-center justify-between">
+      <div className="lg:ml-[280px] flex items-center justify-between">
         <div className="flex items-center gap-3">
           {showBack && (
             <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">

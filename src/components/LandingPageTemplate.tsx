@@ -47,7 +47,7 @@ const LandingPageTemplate = ({
       />
       <Sidebar />
       <Header />
-      <main className="lg:ml-[240px] pb-20 lg:pb-0">
+      <main className="lg:ml-[280px] pb-20 lg:pb-0">
         <section className="py-12 md:py-16 px-4">
           <div className="max-w-2xl mx-auto text-center">
             <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">

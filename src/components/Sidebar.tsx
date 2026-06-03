@@ -45,7 +45,7 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
 
   return (
     <>
-      <aside className="hidden lg:flex flex-col fixed left-0 top-0 h-full w-[240px] border-r border-border bg-sidebar p-4 z-50">
+      <aside className="hidden lg:flex flex-col fixed left-0 top-0 h-full w-[280px] border-r border-border bg-sidebar p-4 z-50">
         <button onClick={() => navigate(homePath)} className="flex items-center gap-3 px-3 py-2 mb-2 text-left">
           <SiteLogo />
           <div>
@@ -59,7 +59,7 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
             <button
               key={item.id}
               onClick={() => navigate(item.id)}
-              className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-full text-[15px] font-medium transition-colors ${
+              className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-full text-[15px] font-medium whitespace-nowrap transition-colors ${
                 isActive(item.id)
                   ? "bg-sidebar-accent text-sidebar-accent-foreground"
                   : "text-sidebar-foreground hover:bg-accent"
@@ -78,7 +78,7 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 w-full px-3 py-2 rounded-full text-[14px] font-medium text-sidebar-foreground hover:bg-accent transition-colors"
+                className="flex items-center gap-3 w-full px-3 py-2 rounded-full text-[14px] font-medium whitespace-nowrap text-sidebar-foreground hover:bg-accent transition-colors"
               >
                 <img src={link.img} alt={link.label} width={20} height={20} loading="lazy" decoding="async" className="w-5 h-5 rounded" />
                 {link.label}
