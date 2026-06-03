@@ -30,54 +30,50 @@ const LandingDownloadTwitterVideoAndroid = lazy(() => import("./pages/landing/Do
 
 const queryClient = new QueryClient();
 
-const LOCALE_PREFIX = ":locale(pt|es|id|tr|hi)";
+const LOCALIZED_LOCALES = ["pt", "es", "id", "tr", "hi"] as const;
+
+const localizedRoutes: { path: string; element: JSX.Element }[] = [
+  { path: "", element: <Index /> },
+  { path: "download-twitter-video", element: <LandingDownloadTwitterVideo /> },
+  { path: "twitter-video-downloader", element: <LandingTwitterVideoDownloader /> },
+  { path: "twitter-to-mp4", element: <LandingTwitterToMp4 /> },
+  { path: "download-twitter-gif", element: <LandingDownloadTwitterGif /> },
+  { path: "download-twitter-video-hd", element: <LandingDownloadTwitterVideoHd /> },
+  { path: "download-twitter-video-iphone", element: <LandingDownloadTwitterVideoIphone /> },
+  { path: "download-twitter-video-android", element: <LandingDownloadTwitterVideoAndroid /> },
+  { path: "downloads", element: <Downloads /> },
+  { path: "sobre", element: <Sobre /> },
+  { path: "como-usar", element: <ComoUsar /> },
+  { path: "faq", element: <FAQ /> },
+  { path: "contato", element: <Contato /> },
+  { path: "privacidade", element: <Privacidade /> },
+  { path: "termos", element: <Termos /> },
+  { path: "dmca", element: <DMCA /> },
+  { path: "uso-responsavel", element: <UsoResponsavel /> },
+];
 
 const RouteSet = () => (
   <Routes>
     {/* English (default, no prefix) */}
-    <Route path="/" element={<Index />} />
-    <Route path="/download-twitter-video" element={<LandingDownloadTwitterVideo />} />
-    <Route path="/twitter-video-downloader" element={<LandingTwitterVideoDownloader />} />
-    <Route path="/twitter-to-mp4" element={<LandingTwitterToMp4 />} />
-    <Route path="/download-twitter-gif" element={<LandingDownloadTwitterGif />} />
-    <Route path="/download-twitter-video-hd" element={<LandingDownloadTwitterVideoHd />} />
-    <Route path="/download-twitter-video-iphone" element={<LandingDownloadTwitterVideoIphone />} />
-    <Route path="/download-twitter-video-android" element={<LandingDownloadTwitterVideoAndroid />} />
+    {localizedRoutes.map((r) => (
+      <Route key={`en-${r.path}`} path={r.path === "" ? "/" : `/${r.path}`} element={r.element} />
+    ))}
 
     {/* Localized variants */}
-    <Route path={`/${LOCALE_PREFIX}`} element={<Index />} />
-    <Route path={`/${LOCALE_PREFIX}/download-twitter-video`} element={<LandingDownloadTwitterVideo />} />
-    <Route path={`/${LOCALE_PREFIX}/twitter-video-downloader`} element={<LandingTwitterVideoDownloader />} />
-    <Route path={`/${LOCALE_PREFIX}/twitter-to-mp4`} element={<LandingTwitterToMp4 />} />
-    <Route path={`/${LOCALE_PREFIX}/download-twitter-gif`} element={<LandingDownloadTwitterGif />} />
-    <Route path={`/${LOCALE_PREFIX}/download-twitter-video-hd`} element={<LandingDownloadTwitterVideoHd />} />
-    <Route path={`/${LOCALE_PREFIX}/download-twitter-video-iphone`} element={<LandingDownloadTwitterVideoIphone />} />
-    <Route path={`/${LOCALE_PREFIX}/download-twitter-video-android`} element={<LandingDownloadTwitterVideoAndroid />} />
-
-    {/* Legacy PT support pages (kept at root to preserve existing indexing) */}
-    <Route path="/downloads" element={<Downloads />} />
-    <Route path="/sobre" element={<Sobre />} />
-    <Route path="/como-usar" element={<ComoUsar />} />
-    <Route path="/faq" element={<FAQ />} />
-    <Route path="/contato" element={<Contato />} />
-    <Route path="/privacidade" element={<Privacidade />} />
-    <Route path="/termos" element={<Termos />} />
-    <Route path="/dmca" element={<DMCA />} />
-    <Route path="/uso-responsavel" element={<UsoResponsavel />} />
-    {/* Also reachable under locale prefixes */}
-    <Route path={`/${LOCALE_PREFIX}/downloads`} element={<Downloads />} />
-    <Route path={`/${LOCALE_PREFIX}/sobre`} element={<Sobre />} />
-    <Route path={`/${LOCALE_PREFIX}/como-usar`} element={<ComoUsar />} />
-    <Route path={`/${LOCALE_PREFIX}/faq`} element={<FAQ />} />
-    <Route path={`/${LOCALE_PREFIX}/contato`} element={<Contato />} />
-    <Route path={`/${LOCALE_PREFIX}/privacidade`} element={<Privacidade />} />
-    <Route path={`/${LOCALE_PREFIX}/termos`} element={<Termos />} />
-    <Route path={`/${LOCALE_PREFIX}/dmca`} element={<DMCA />} />
-    <Route path={`/${LOCALE_PREFIX}/uso-responsavel`} element={<UsoResponsavel />} />
+    {LOCALIZED_LOCALES.flatMap((loc) =>
+      localizedRoutes.map((r) => (
+        <Route
+          key={`${loc}-${r.path}`}
+          path={r.path === "" ? `/${loc}` : `/${loc}/${r.path}`}
+          element={r.element}
+        />
+      ))
+    )}
 
     <Route path="*" element={<NotFound />} />
   </Routes>
 );
+
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
