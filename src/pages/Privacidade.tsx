@@ -15,7 +15,7 @@ const Privacidade = () => (
     <Sidebar activeSection="" />
     <Header title="Política de Privacidade" showBack />
 
-    <main className="lg:ml-[240px] pb-20 lg:pb-0">
+    <main className="lg:ml-[280px] pb-20 lg:pb-0">
       <article className="py-12 px-4">
         <div className="max-w-2xl mx-auto prose prose-sm">
           <h1 className="text-3xl font-extrabold text-foreground">Política de Privacidade</h1>

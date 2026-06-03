@@ -45,7 +45,7 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
 
   return (
     <>
-      <aside className="hidden lg:flex flex-col fixed left-0 top-0 h-full w-[240px] border-r border-border bg-sidebar p-4 z-50">
+      <aside className="hidden lg:flex flex-col fixed left-0 top-0 h-full w-[280px] border-r border-border bg-sidebar p-4 z-50">
         <button onClick={() => navigate(homePath)} className="flex items-center gap-3 px-3 py-2 mb-2 text-left">
           <SiteLogo />
           <div>

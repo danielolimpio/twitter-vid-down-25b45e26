@@ -17,7 +17,7 @@ const Sobre = () => (
     <Sidebar activeSection="sobre" />
     <Header title="Sobre" showBack />
 
-    <main className="lg:ml-[240px] pb-20 lg:pb-0">
+    <main className="lg:ml-[280px] pb-20 lg:pb-0">
       <article className="py-12 px-4">
         <div className="max-w-2xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-extrabold mb-4">Sobre o TwitterDown</h1>
