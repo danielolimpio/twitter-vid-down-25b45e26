@@ -1,10 +1,25 @@
+# robots.txt for baixarvideostwitter.com
+# Twitter / X Video Downloader — global, multilingual
+
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
 
+User-agent: Googlebot-Image
+Allow: /
+
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
 
 User-agent: Twitterbot
 Allow: /
@@ -12,7 +27,17 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: LinkedInBot
 Allow: /
 
+User-agent: Applebot
+Allow: /
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*?*utm_
+Disallow: /*?*ref=
+
 Sitemap: https://baixarvideostwitter.com/sitemap.xml
+Host: https://baixarvideostwitter.com
