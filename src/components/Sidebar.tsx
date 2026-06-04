@@ -6,8 +6,8 @@ import facebookImg from "@/assets/baixar-facebook.png";
 import youtubeImg from "@/assets/baixar-youtube.png";
 import tiktokImg from "@/assets/baixar-tiktok.png";
 import kwaiImg from "@/assets/baixar-kwai.png";
-import batePapoLogo from "@/assets/batepapo-logo.png.asset.json";
-import batePapoGif from "@/assets/batepapo.gif.asset.json";
+const batePapoLogo = "/batepapo-logo.png";
+const batePapoGif = "/batepapo.gif";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { localizedPath } from "@/i18n/config";
 
