@@ -56,12 +56,12 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
           </div>
         </button>
 
-        <nav className="flex-1 mt-2 space-y-1 overflow-y-auto">
+        <nav className="flex-1 mt-2 space-y-1 overflow-hidden">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => navigate(item.id)}
-              className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-full text-[15px] font-medium whitespace-nowrap transition-colors ${
+              className={`flex items-center gap-3 w-full px-3 py-2 rounded-full text-[15px] font-medium whitespace-nowrap transition-colors ${
                 isActive(item.id)
                   ? "bg-sidebar-accent text-sidebar-accent-foreground"
                   : "text-sidebar-foreground hover:bg-accent"
@@ -72,15 +72,15 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
             </button>
           ))}
 
-          <div className="pt-4 mt-4 border-t border-border">
-            <p className="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">More Downloaders</p>
+          <div className="pt-3 mt-3 border-t border-border">
+            <p className="px-3 mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">More Downloaders</p>
             {externalLinks.map((link) => (
               <a
                 key={link.url}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 w-full px-3 py-2 rounded-full text-[14px] font-medium whitespace-nowrap text-sidebar-foreground hover:bg-accent transition-colors"
+                className="flex items-center gap-3 w-full px-3 py-1.5 rounded-full text-[14px] font-medium whitespace-nowrap text-sidebar-foreground hover:bg-accent transition-colors"
               >
                 <img src={link.img} alt={link.label} width={20} height={20} loading="lazy" decoding="async" className="w-5 h-5 rounded" />
                 {link.label}
@@ -89,7 +89,7 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
           </div>
         </nav>
 
-        <div className="pt-4 mt-4 border-t border-border flex flex-col items-center">
+        <div className="pt-2 mt-2 border-t border-border flex flex-col items-center">
           <a
             href="https://batepapogratis.com/"
             target="_blank"
@@ -97,10 +97,11 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
             aria-label="Bate Papo Gratis"
             className="flex flex-col items-center hover:opacity-80 transition-opacity"
           >
-            <img src={batePapoLogo} alt="Bate Papo" width={180} height={180} loading="lazy" decoding="async" className="w-40 h-auto -mb-2" />
-            <img src={batePapoGif} alt="Bate Papo Chat" width={140} height={140} loading="lazy" decoding="async" className="w-28 h-auto -mt-2" />
+            <img src={batePapoLogo} alt="Bate Papo" width={120} height={120} loading="lazy" decoding="async" className="w-24 h-auto -mb-4" />
+            <img src={batePapoGif} alt="Bate Papo Chat" width={88} height={88} loading="lazy" decoding="async" className="w-20 h-auto -mt-4" />
           </a>
         </div>
+
 
 
         <div className="mt-auto pt-4 border-t border-border">
