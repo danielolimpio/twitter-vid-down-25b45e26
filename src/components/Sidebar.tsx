@@ -6,6 +6,8 @@ import facebookImg from "@/assets/baixar-facebook.png";
 import youtubeImg from "@/assets/baixar-youtube.png";
 import tiktokImg from "@/assets/baixar-tiktok.png";
 import kwaiImg from "@/assets/baixar-kwai.png";
+import batePapoLogo from "@/assets/batepapo-logo.png.asset.json";
+import batePapoGif from "@/assets/batepapo.gif.asset.json";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { localizedPath } from "@/i18n/config";
 
@@ -86,6 +88,19 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
             ))}
           </div>
         </nav>
+
+        <div className="pt-4 mt-4 border-t border-border flex flex-col items-center gap-2">
+          <a
+            href="https://batepapogratis.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Bate Papo Gratis"
+            className="flex flex-col items-center gap-2 hover:opacity-80 transition-opacity"
+          >
+            <img src={batePapoLogo.url} alt="Bate Papo" width={120} height={120} loading="lazy" decoding="async" className="w-28 h-auto" />
+            <img src={batePapoGif.url} alt="Bate Papo Chat" width={96} height={96} loading="lazy" decoding="async" className="w-20 h-auto" />
+          </a>
+        </div>
 
         <div className="mt-auto pt-4 border-t border-border">
           <div className="flex items-center justify-between px-3">
