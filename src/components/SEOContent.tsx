@@ -93,7 +93,8 @@ const CONTENT: Record<string, Block> = {
     h2: "2026'nın En İyi Twitter Video İndirici",
     alt: "Twitter videolarını HD, Full HD ve 4K olarak ücretsiz indirin - TwitterDown",
     paras: [
-      "TwitterDown, Twitter (X) videolarını filigransız indirmek için en hızlı çevrimiçi araçtır. Dünya çapında milyonlarca kişi tarafından kullanılan site ücretsiz, güvenli ve her cihazda çalışır — uygulama, kayıt veya eklenti gerekmez.",
+      "TwitterDown, Twitter (X) videolarını filigransız indirmek için en hızlı çevrimiçi araçtır. Dünya çapında milyonlarca kişi tarafından kullanılan site ücretsiz, güvenli ve her cihazda çalışır — uygulama, kayıt veya eklenti gerekmez. ssstwitter, twittervideodownloader, twmate, savetwitter, snaptwitter, x2twitter ve savetwt için güvenilir bir alternatif.",
+      "Twitter videosu telefondan veya bilgisayardan nasıl indirilir? Tweet bağlantısını twitter.com veya x.com adresinden kopyalayın, yukarıdaki kutuya yapıştırın ve İndir'e tıklayın. Twitter video indiricimiz mevcut tüm kaliteleri algılar — SD, HD 720p, Full HD 1080p, 2K ve 4K — ve MP4'ü saniyeler içinde Android, iPhone, iPad, Windows, Mac veya Linux'a kaydeder.",
       "Tüm genel Twitter medya türlerini destekler: yerel videolar, video yanıtları, alıntı tweetler ve animasyonlu GIF'ler. Kaynak tweet o kalitede yüklendiyse SD, HD 720p, Full HD 1080p ve 4K olarak kaydedebilirsiniz.",
       "İndirici; Android, iPhone, iPad, Windows, macOS ve Linux'ta Chrome, Safari, Firefox, Edge, Brave ve Samsung Internet gibi modern tarayıcılar üzerinden çalışır.",
     ],
