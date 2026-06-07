@@ -30,7 +30,8 @@ const CONTENT: Record<string, Block> = {
     h2: "A Melhor Ferramenta Para Baixar Vídeos do Twitter (X) em 2026",
     alt: "Baixar vídeos do Twitter grátis em HD, Full HD e 4K - TwitterDown",
     paras: [
-      "O TwitterDown é a ferramenta online mais rápida para baixar vídeos do Twitter (X) sem marca d'água. Usado por milhões de pessoas, o site é grátis, seguro e funciona em qualquer dispositivo — sem app, sem cadastro, sem extensão.",
+      "O TwitterDown é a ferramenta online mais rápida para baixar vídeos do Twitter (X) sem marca d'água. Usado por milhões de pessoas, o site é grátis, seguro e funciona em qualquer dispositivo — sem app, sem cadastro, sem extensão. Uma alternativa confiável ao ssstwitter, twittervideodownloader, twmate, savetwitter, snaptwitter, x2twitter e savetwt em português.",
+      "Quer saber como baixar vídeos do Twitter no celular ou no PC? Basta copiar o link do tweet no twitter.com ou x.com, colar na caixa acima e clicar em Baixar. Nosso baixador de vídeos do Twitter detecta todas as qualidades disponíveis — SD, HD 720p, Full HD 1080p, 2K e 4K — e salva o MP4 direto no seu Android, iPhone, iPad, Windows, Mac ou Linux em segundos.",
       "Suporta todos os tipos de mídia pública do Twitter: vídeos nativos, respostas em vídeo, quote tweets e GIFs animados, em SD, HD 720p, Full HD 1080p e 4K quando o tweet original foi enviado nessa qualidade.",
       "Funciona em Android, iPhone, iPad, Windows, macOS e Linux através de qualquer navegador moderno.",
     ],
