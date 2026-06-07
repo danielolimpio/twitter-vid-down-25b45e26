@@ -9,7 +9,8 @@ const CONTENT: Record<string, Block> = {
     h2: "The Best Twitter Video Downloader in 2026",
     alt: "Download Twitter videos free in HD, Full HD and 4K - TwitterDown",
     paras: [
-      "TwitterDown is the fastest online tool to download Twitter (X) videos without watermark. Used by millions worldwide, the site is free, secure and works on every device — no app, no signup, no extension.",
+      "TwitterDown is the fastest online tool to download Twitter (X) videos without watermark. Used by millions worldwide, the site is free, secure and works on every device — no app, no signup, no extension. A trusted alternative to ssstwitter, twittervideodownloader, twmate, savetwitter, snaptwitter, x2twitter and savetwt.",
+      "Looking for how to download a video from Twitter? Just copy the tweet URL from twitter.com or x.com, paste it in the box above and click Download. Our Twitter video downloader will detect every available quality — SD, HD 720p, Full HD 1080p, 2K and 4K — and let you save the MP4 to your phone or computer in seconds.",
       "It supports every public Twitter media type: native videos, video replies, quote tweets and animated GIFs. You can save them in SD, HD 720p, Full HD 1080p and 4K when the source tweet was uploaded in that quality.",
       "The downloader works on Android, iPhone, iPad, Windows, macOS and Linux through any modern browser — Chrome, Safari, Firefox, Edge, Brave and Samsung Internet.",
     ],
