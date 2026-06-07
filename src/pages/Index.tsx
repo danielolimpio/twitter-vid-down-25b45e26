@@ -44,7 +44,7 @@ const META: Record<string, { title: string; desc: string; keywords: string }> = 
 
 const Index = () => {
   const { locale, t } = useLocale();
-  const meta = (META as Record<string, { title: string; desc: string }>)[locale] ?? META.en;
+  const meta = META[locale] ?? META.en;
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
