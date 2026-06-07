@@ -72,7 +72,8 @@ const CONTENT: Record<string, Block> = {
     h2: "Pengunduh Video Twitter Terbaik di 2026",
     alt: "Unduh video Twitter gratis dalam HD, Full HD, dan 4K - TwitterDown",
     paras: [
-      "TwitterDown adalah alat online tercepat untuk mengunduh video Twitter (X) tanpa watermark. Digunakan oleh jutaan orang di seluruh dunia, situs ini gratis, aman, dan bekerja di setiap perangkat — tanpa aplikasi, tanpa pendaftaran, tanpa ekstensi.",
+      "TwitterDown adalah alat online tercepat untuk mengunduh video Twitter (X) tanpa watermark. Digunakan oleh jutaan orang di seluruh dunia, situs ini gratis, aman, dan bekerja di setiap perangkat — tanpa aplikasi, tanpa pendaftaran, tanpa ekstensi. Alternatif terpercaya untuk ssstwitter, twittervideodownloader, twmate, savetwitter, snaptwitter, x2twitter dan savetwt.",
+      "Ingin tahu cara download video Twitter di HP atau PC? Cukup salin tautan tweet dari twitter.com atau x.com, tempel di kotak di atas, dan klik Unduh. Pengunduh video Twitter kami mendeteksi semua kualitas yang tersedia — SD, HD 720p, Full HD 1080p, 2K, dan 4K — dan menyimpan MP4 langsung ke Android, iPhone, iPad, Windows, Mac, atau Linux dalam hitungan detik.",
       "Mendukung semua jenis media publik Twitter: video asli, balasan video, quote tweet, dan GIF animasi. Anda dapat menyimpannya dalam SD, HD 720p, Full HD 1080p, dan 4K bila tweet sumber diunggah dalam kualitas tersebut.",
       "Pengunduh ini bekerja di Android, iPhone, iPad, Windows, macOS, dan Linux melalui peramban modern apa pun — Chrome, Safari, Firefox, Edge, Brave, dan Samsung Internet.",
     ],
