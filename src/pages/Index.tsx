@@ -51,7 +51,7 @@ const Index = () => {
         title={meta.title}
         description={meta.desc}
         path="/"
-        keywords="twitter video downloader, download twitter video, x video downloader, twitter to mp4, twitter gif downloader, save twitter video, twitter mp4 download, twitter video hd"
+        keywords={meta.keywords}
         breadcrumbs={[{ name: t.nav.home, path: "/" }]}
         faqItems={t.faqs.map(f => ({ question: f.q, answer: f.a }))}
         webApp
