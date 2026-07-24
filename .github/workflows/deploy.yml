@@ -29,7 +29,7 @@ jobs:
       - name: Mostrar arquivos gerados
         run: ls -la dist/
 
-      - name: Deploy FTP para Hostinger
+      - name: Deploy FTP para Hostinger (incremental — sem apagar tudo)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_HOST }}
@@ -38,6 +38,16 @@ jobs:
           password: ${{ secrets.FTP_PASS }}
           local-dir: ./dist/
           server-dir: /
-          dangerous-clean-slate: true
+          # IMPORTANTE: NÃO usar dangerous-clean-slate.
+          # A action compara os arquivos e faz upload incremental,
+          # mantendo chunks JS antigos disponíveis para usuários com HTML em cache
+          # durante a janela de deploy (evita tela branca / imagens quebradas no 1º load).
+          dangerous-clean-slate: false
           dry-run: false
           log-level: verbose
+          # Preserva pastas/arquivos que não fazem parte do build (ex.: .well-known, uploads manuais)
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .well-known/**
