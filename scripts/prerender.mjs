@@ -60,20 +60,19 @@ const context = await browser.newContext({ viewport: { width: 1280, height: 800 
 let ok = 0;
 let fail = 0;
 
-for (const path of urls) {
+const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY ?? 8);
+
+async function renderOne(path) {
   const url = ORIGIN + path;
   const page = await context.newPage();
   try {
-    await page.goto(url, { waitUntil: "networkidle", timeout: 30_000 });
-    // Wait one extra tick for React commit + SEOHead useEffect side effects
-    await page.waitForTimeout(300);
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 30_000 });
+    // Wait for React commit + SEOHead useEffect side effects
+    await page.waitForTimeout(400);
 
     let html = await page.content();
-
-    // Rewrite absolute preview URLs back to canonical host in case any slipped in
     html = html.replaceAll(ORIGIN, CANONICAL_HOST);
 
-    // Compute output file: /  -> dist/index.html, /pt -> dist/pt/index.html, etc.
     const cleanPath = path === "/" ? "/" : path.replace(/\/$/, "");
     const outFile = cleanPath === "/"
       ? join(DIST, "index.html")
@@ -90,8 +89,20 @@ for (const path of urls) {
   }
 }
 
+// Simple worker pool for parallel rendering
+const queue = [...urls];
+async function worker() {
+  while (queue.length > 0) {
+    const path = queue.shift();
+    if (!path) return;
+    await renderOne(path);
+  }
+}
+await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()));
+
 await browser.close();
 server.kill("SIGTERM");
 
-console.log(`[prerender] done: ${ok} ok, ${fail} failed`);
+console.log(`[prerender] done: ${ok} ok, ${fail} failed (concurrency=${CONCURRENCY})`);
 if (fail > 0) process.exit(1);
+
