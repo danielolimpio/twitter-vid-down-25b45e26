@@ -5,25 +5,46 @@ on:
     branches:
       - main
 
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: true
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Clonar o repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Configurar Node.js 18
-        uses: actions/setup-node@v3
+      - name: Configurar Node.js 18 (com cache npm)
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
+          cache: 'npm'
 
       - name: Instalar dependências
-        run: npm install
+        run: npm ci --prefer-offline --no-audit --progress=false
 
-      - name: Instalar Chromium para prerender
+      - name: Cache do Chromium (Playwright)
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Instalar Chromium (somente se cache miss)
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
 
-      - name: Build do projeto (com prerender SSG)
+      - name: Instalar deps de sistema do Chromium (quando cache hit)
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
+
+      - name: Build do projeto (com prerender SSG paralelo)
+        env:
+          PRERENDER_CONCURRENCY: '8'
         run: npm run build
 
       - name: Mostrar arquivos gerados
@@ -38,14 +59,9 @@ jobs:
           password: ${{ secrets.FTP_PASS }}
           local-dir: ./dist/
           server-dir: /
-          # IMPORTANTE: NÃO usar dangerous-clean-slate.
-          # A action compara os arquivos e faz upload incremental,
-          # mantendo chunks JS antigos disponíveis para usuários com HTML em cache
-          # durante a janela de deploy (evita tela branca / imagens quebradas no 1º load).
           dangerous-clean-slate: false
           dry-run: false
           log-level: verbose
-          # Preserva pastas/arquivos que não fazem parte do build (ex.: .well-known, uploads manuais)
           exclude: |
             **/.git*
             **/.git*/**
